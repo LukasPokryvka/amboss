@@ -26,12 +26,13 @@ export const LayoutNav = () => {
               <SidebarMenuButton
                 asChild
                 className={cn(
+                  "font-medium",
                   isActive &&
-                    "bg-primary/10 hover:bg-primary/10 focus-visible:bg-primary/10"
+                    "bg-primary hover:bg-primary/90 focus-visible:bg-primary/90 text-primary-foreground hover:text-primary-foreground focus-visible:text-primary-foreground"
                 )}
                 tooltip={item.title}
               >
-                <Link href={item.url}>
+                <Link href={item.url} className='flex items-center gap-4'>
                   {item.icon && <item.icon />}
                   <span>{item.title}</span>
                 </Link>

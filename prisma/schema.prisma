@@ -7,3 +7,185 @@ generator client {
   provider = "prisma-client-js"
   output   = "./generated/prisma-client"
 }
+
+enum Currency {
+  USD
+  EUR
+  GBP
+  CAD
+  AUD
+  CZK
+  HUF
+  PLN
+}
+
+enum IncomeType {
+  FullTime
+  Contract
+  Freelance
+  Business
+}
+
+enum IncomeFrequency {
+  Monthly
+  Weekly
+  Daily
+  Invoice
+}
+
+enum Language {
+  EN
+  SK
+}
+
+enum AccountType {
+  Checking
+  Savings
+  CreditCard
+  Loan
+  Investment
+  Mortgage
+  Crypto
+  Other
+}
+
+enum InvestmentType {
+  Stock
+  ETF
+  Bond
+  TermDeposit
+  Crypto
+  MutualFund
+  Commodity
+  RealEstate
+  Other
+}
+
+enum BondFrequencyOfInterestPayments {
+  HalfYearly
+  Annually
+}
+
+enum CryptoCurrency {
+  BTC
+  ETH
+}
+
+model UserProfile {
+  id                 Int             @id @default(autoincrement())
+  clerkId            String          @unique
+  name               String?
+  language           Language
+  currency           Currency
+  incomeType         IncomeType
+  incomeAmount       Float?
+  incomeHourlyRate   Float?
+  workingHoursPerDay Int?
+  incomeFrequency    IncomeFrequency
+  createdAt          DateTime        @default(now())
+  updatedAt          DateTime        @updatedAt
+
+  @@index([clerkId])
+}
+
+model Account {
+  id            Int         @id @default(autoincrement())
+  clerkId       String
+  name          String
+  type          AccountType
+  balance       Float       @default(0)
+  institution   String?
+  accountNumber String?
+  isActive      Boolean     @default(true)
+  createdAt     DateTime    @default(now())
+
+  updatedAt   DateTime      @updatedAt
+  termDeposit TermDeposit[]
+  bond        Bond[]
+  crypto      Crypto[]
+
+  @@index([clerkId])
+}
+
+model TermDeposit {
+  id             Int            @id @default(autoincrement())
+  clerkId        String
+  accountId      Int?
+  name           String
+  type           InvestmentType
+  currency       Currency
+  institution    String?
+  amountInvested Float          @default(0)
+  interestRate   Float
+  termInMonths   Int
+  startDate      DateTime
+  endDate        DateTime
+  taxRate        Float?
+  isActive       Boolean        @default(true)
+  createdAt      DateTime       @default(now())
+  updatedAt      DateTime       @updatedAt
+
+  account Account? @relation(fields: [accountId], references: [id])
+}
+
+model Bond {
+  id                          Int                             @id @default(autoincrement())
+  clerkId                     String
+  accountId                   Int?
+  name                        String
+  type                        InvestmentType
+  currency                    Currency
+  institution                 String?
+  numberOfUnits               Int
+  unitPrice                   Float
+  interestRate                Float
+  initialFee                  Float?
+  taxRate                     Float?
+  startDate                   DateTime
+  endDate                     DateTime
+  frequencyOfInterestPayments BondFrequencyOfInterestPayments
+  isActive                    Boolean                         @default(true)
+  createdAt                   DateTime                        @default(now())
+  updatedAt                   DateTime                        @updatedAt
+
+  account Account? @relation(fields: [accountId], references: [id])
+
+  @@index([clerkId])
+}
+
+model Crypto {
+  id        Int            @id @default(autoincrement())
+  clerkId   String
+  accountId Int?
+  name      String
+  type      InvestmentType
+  currency  CryptoCurrency
+  amount    Float
+  isActive  Boolean        @default(true)
+  createdAt DateTime       @default(now())
+  updatedAt DateTime       @updatedAt
+
+  account Account? @relation(fields: [accountId], references: [id])
+
+  @@index([clerkId])
+}
+
+model MonthlySnapshot {
+  id                     Int      @id @default(autoincrement())
+  clerkId                String
+  year                   Int
+  month                  Int
+  totalBankAccounts      Float    @default(0)
+  totalCryptoValue       Float    @default(0)
+  totalBondsValue        Float    @default(0)
+  totalTermDepositsValue Float    @default(0)
+  totalAssets            Float    @default(0)
+  totalLiabilities       Float    @default(0)
+  netWorth               Float    @default(0)
+  snapshotDate           DateTime
+  createdAt              DateTime @default(now())
+
+  @@unique([clerkId, year, month])
+  @@index([clerkId])
+  @@index([year, month])
+}

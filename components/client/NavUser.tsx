@@ -59,9 +59,8 @@ export const NavUser = () => {
                   {user.primaryEmailAddress?.emailAddress.charAt(0)}
                 </AvatarFallback>
               </Avatar>
-              <div className='grid flex-1 text-left text-sm leading-tight'>
-                <span className='truncate font-medium'>{`${user.firstName} ${user.lastName}`}</span>
-                <span className='truncate text-xs'>
+              <div className='text-left text-sm leading-tight'>
+                <span className='truncate'>
                   {user.emailAddresses[0].emailAddress}
                 </span>
               </div>
@@ -85,9 +84,8 @@ export const NavUser = () => {
                     {user.primaryEmailAddress?.emailAddress.charAt(0)}
                   </AvatarFallback>
                 </Avatar>
-                <div className='grid flex-1 text-left text-sm leading-tight'>
-                  <span className='truncate font-medium'>{`${user.firstName} ${user.lastName}`}</span>
-                  <span className='truncate text-xs'>
+                <div className='text-left text-sm leading-tight'>
+                  <span className='truncate'>
                     {user.emailAddresses[0].emailAddress}
                   </span>
                 </div>

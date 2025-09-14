@@ -1,5 +1,5 @@
 import Link from "next/link"
-import { type ComponentProps, Suspense } from "react"
+import type { ComponentProps } from "react"
 import { NavUser } from "@/components/client/NavUser"
 import { Heading } from "@/components/ui/heading"
 import {
@@ -12,8 +12,8 @@ import {
   SidebarMenuItem,
   SidebarRail,
 } from "@/components/ui/sidebar"
-import { LayoutNav } from "./LayoutNav"
 import { ROUTES } from "@/constants/routes"
+import { LayoutNav } from "./LayoutNav"
 
 export const LayoutSidebar = ({
   role,
@@ -47,9 +47,7 @@ export const LayoutSidebar = ({
       <LayoutNav />
     </SidebarContent>
     <SidebarFooter>
-      <Suspense fallback={<div>Loading...</div>}>
-        <NavUser />
-      </Suspense>
+      <NavUser />
     </SidebarFooter>
     <SidebarRail />
   </Sidebar>

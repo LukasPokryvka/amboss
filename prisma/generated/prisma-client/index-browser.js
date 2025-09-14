@@ -120,9 +120,187 @@ exports.Prisma.TransactionIsolationLevel = makeStrictEnum({
   Serializable: 'Serializable'
 });
 
+exports.Prisma.UserProfileScalarFieldEnum = {
+  id: 'id',
+  clerkId: 'clerkId',
+  name: 'name',
+  language: 'language',
+  currency: 'currency',
+  incomeType: 'incomeType',
+  incomeAmount: 'incomeAmount',
+  incomeHourlyRate: 'incomeHourlyRate',
+  workingHoursPerDay: 'workingHoursPerDay',
+  incomeFrequency: 'incomeFrequency',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.AccountScalarFieldEnum = {
+  id: 'id',
+  clerkId: 'clerkId',
+  name: 'name',
+  type: 'type',
+  balance: 'balance',
+  institution: 'institution',
+  accountNumber: 'accountNumber',
+  isActive: 'isActive',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.TermDepositScalarFieldEnum = {
+  id: 'id',
+  clerkId: 'clerkId',
+  accountId: 'accountId',
+  name: 'name',
+  type: 'type',
+  currency: 'currency',
+  institution: 'institution',
+  amountInvested: 'amountInvested',
+  interestRate: 'interestRate',
+  termInMonths: 'termInMonths',
+  startDate: 'startDate',
+  endDate: 'endDate',
+  taxRate: 'taxRate',
+  isActive: 'isActive',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.BondScalarFieldEnum = {
+  id: 'id',
+  clerkId: 'clerkId',
+  accountId: 'accountId',
+  name: 'name',
+  type: 'type',
+  currency: 'currency',
+  institution: 'institution',
+  numberOfUnits: 'numberOfUnits',
+  unitPrice: 'unitPrice',
+  interestRate: 'interestRate',
+  initialFee: 'initialFee',
+  taxRate: 'taxRate',
+  startDate: 'startDate',
+  endDate: 'endDate',
+  frequencyOfInterestPayments: 'frequencyOfInterestPayments',
+  isActive: 'isActive',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.CryptoScalarFieldEnum = {
+  id: 'id',
+  clerkId: 'clerkId',
+  accountId: 'accountId',
+  name: 'name',
+  type: 'type',
+  currency: 'currency',
+  amount: 'amount',
+  isActive: 'isActive',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.MonthlySnapshotScalarFieldEnum = {
+  id: 'id',
+  clerkId: 'clerkId',
+  year: 'year',
+  month: 'month',
+  totalBankAccounts: 'totalBankAccounts',
+  totalCryptoValue: 'totalCryptoValue',
+  totalBondsValue: 'totalBondsValue',
+  totalTermDepositsValue: 'totalTermDepositsValue',
+  totalAssets: 'totalAssets',
+  totalLiabilities: 'totalLiabilities',
+  netWorth: 'netWorth',
+  snapshotDate: 'snapshotDate',
+  createdAt: 'createdAt'
+};
+
+exports.Prisma.SortOrder = {
+  asc: 'asc',
+  desc: 'desc'
+};
+
+exports.Prisma.QueryMode = {
+  default: 'default',
+  insensitive: 'insensitive'
+};
+
+exports.Prisma.NullsOrder = {
+  first: 'first',
+  last: 'last'
+};
+exports.Language = exports.$Enums.Language = {
+  EN: 'EN',
+  SK: 'SK'
+};
+
+exports.Currency = exports.$Enums.Currency = {
+  USD: 'USD',
+  EUR: 'EUR',
+  GBP: 'GBP',
+  CAD: 'CAD',
+  AUD: 'AUD',
+  CZK: 'CZK',
+  HUF: 'HUF',
+  PLN: 'PLN'
+};
+
+exports.IncomeType = exports.$Enums.IncomeType = {
+  FullTime: 'FullTime',
+  Contract: 'Contract',
+  Freelance: 'Freelance',
+  Business: 'Business'
+};
+
+exports.IncomeFrequency = exports.$Enums.IncomeFrequency = {
+  Monthly: 'Monthly',
+  Weekly: 'Weekly',
+  Daily: 'Daily',
+  Invoice: 'Invoice'
+};
+
+exports.AccountType = exports.$Enums.AccountType = {
+  Checking: 'Checking',
+  Savings: 'Savings',
+  CreditCard: 'CreditCard',
+  Loan: 'Loan',
+  Investment: 'Investment',
+  Mortgage: 'Mortgage',
+  Crypto: 'Crypto',
+  Other: 'Other'
+};
+
+exports.InvestmentType = exports.$Enums.InvestmentType = {
+  Stock: 'Stock',
+  ETF: 'ETF',
+  Bond: 'Bond',
+  TermDeposit: 'TermDeposit',
+  Crypto: 'Crypto',
+  MutualFund: 'MutualFund',
+  Commodity: 'Commodity',
+  RealEstate: 'RealEstate',
+  Other: 'Other'
+};
+
+exports.BondFrequencyOfInterestPayments = exports.$Enums.BondFrequencyOfInterestPayments = {
+  HalfYearly: 'HalfYearly',
+  Annually: 'Annually'
+};
+
+exports.CryptoCurrency = exports.$Enums.CryptoCurrency = {
+  BTC: 'BTC',
+  ETH: 'ETH'
+};
 
 exports.Prisma.ModelName = {
-
+  UserProfile: 'UserProfile',
+  Account: 'Account',
+  TermDeposit: 'TermDeposit',
+  Bond: 'Bond',
+  Crypto: 'Crypto',
+  MonthlySnapshot: 'MonthlySnapshot'
 };
 
 /**

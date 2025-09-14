@@ -6,4 +6,6 @@ export const ROUTES = {
 
   // Authenticated
   Dashboard: () => "/dashboard",
+  Profile: () => "/profile",
+  Accounts: () => "/accounts",
 }
