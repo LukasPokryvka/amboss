@@ -1,11 +1,11 @@
 "use server"
 
 import { auth } from "@clerk/nextjs/server"
+import type { CryptoCurrency, Currency } from "@prisma/client"
 import { unstable_cache } from "next/cache"
 import { DEFAULT_UNAUTHENTICATED_RESPONSE } from "@/constants/defaultUnauthenticatedResponse"
 import prisma from "@/lib/prisma"
 import { tryCatch } from "@/lib/tryCatch"
-import type { CryptoCurrency, Currency } from "@/prisma/generated/prisma-client"
 
 const getCryptoPrices = unstable_cache(
   async ({

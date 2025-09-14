@@ -1,5 +1,5 @@
+import type { Currency } from "@prisma/client"
 import { CURRENCY_LOCALES } from "@/constants/locales"
-import type { Currency } from "@/prisma/generated/prisma-client"
 
 export const getCurrencyFormatter = (currency: Currency) => {
   const locale = CURRENCY_LOCALES[currency] || "en-US"

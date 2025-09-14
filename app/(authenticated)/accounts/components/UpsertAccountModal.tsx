@@ -1,6 +1,7 @@
 "use client"
 
 import { zodResolver } from "@hookform/resolvers/zod"
+import { type Account, AccountType } from "@prisma/client"
 import dynamic from "next/dynamic"
 import { useTransition } from "react"
 import { useForm } from "react-hook-form"
@@ -15,7 +16,6 @@ import {
   AccountSchema,
   type AccountSchemaType,
 } from "@/lib/validation/account.schema"
-import { type Account, AccountType } from "@/prisma/generated/prisma-client"
 import { upsertAccount } from "../../actions/accounts.action"
 import { revalidateServerPath } from "../../actions/common.action"
 

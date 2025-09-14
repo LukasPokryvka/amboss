@@ -1,6 +1,13 @@
 "use client"
 
 import { zodResolver } from "@hookform/resolvers/zod"
+import {
+  Currency,
+  IncomeFrequency,
+  IncomeType,
+  Language,
+  type UserProfile,
+} from "@prisma/client"
 import dynamic from "next/dynamic"
 import { useTransition } from "react"
 import { useForm } from "react-hook-form"
@@ -15,13 +22,6 @@ import {
   UserProfileSchema,
   type UserProfileSchemaType,
 } from "@/lib/validation/userProfile.schema"
-import {
-  Currency,
-  IncomeFrequency,
-  IncomeType,
-  Language,
-  type UserProfile,
-} from "@/prisma/generated/prisma-client"
 import { revalidateServerPath } from "../../actions/common.action"
 import { upsertUserProfile } from "../../actions/userProfile.action"
 

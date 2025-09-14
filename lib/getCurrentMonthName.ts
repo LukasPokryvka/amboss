@@ -1,5 +1,5 @@
+import type { Language } from "@prisma/client"
 import { LANGUAGE_LOCALES } from "@/constants/locales"
-import type { Language } from "@/prisma/generated/prisma-client"
 
 export const getCurrentMonthName = (language: Language) => {
   const locale = LANGUAGE_LOCALES[language]

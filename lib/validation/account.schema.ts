@@ -1,5 +1,5 @@
+import { AccountType, Currency } from "@prisma/client"
 import z from "zod"
-import { AccountType, Currency } from "@/prisma/generated/prisma-client"
 
 export const AccountSchema = z.object({
   name: z.string().min(1),

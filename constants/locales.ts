@@ -1,4 +1,4 @@
-import { Currency, Language } from "@/prisma/generated/prisma-client"
+import { Currency, Language } from "@prisma/client"
 
 export const CURRENCY_LOCALES = {
   [Currency.USD]: "en-US",

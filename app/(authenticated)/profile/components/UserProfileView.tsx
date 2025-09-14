@@ -1,5 +1,6 @@
 "use client"
 
+import { IncomeType, type UserProfile } from "@prisma/client"
 import { ChartBar, Pencil, TrendingUp, User } from "lucide-react"
 import dynamic from "next/dynamic"
 import { use, useState } from "react"
@@ -15,7 +16,6 @@ import {
   getWorkingHoursInCurrentMonth,
 } from "@/lib/getNumberOfWorkingDaysInCurrentMonth"
 import type { Result } from "@/lib/tryCatch"
-import { IncomeType, type UserProfile } from "@/prisma/generated/prisma-client"
 import { NoProfileWarning } from "./NoProfileWarning"
 
 const ProfileFormModal = dynamic(

@@ -1,4 +1,4 @@
-import { Currency } from "@/prisma/generated/prisma-client"
+import { Currency } from "@prisma/client"
 
 export const CURRENCY_MAP = {
   [Currency.USD]: "$",

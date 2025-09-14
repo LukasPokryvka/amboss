@@ -1,5 +1,6 @@
 "use client"
 
+import { type Account, AccountType } from "@prisma/client"
 import { Landmark, Pencil, PiggyBank, Trash } from "lucide-react"
 import dynamic from "next/dynamic"
 import { use, useState } from "react"
@@ -12,7 +13,6 @@ import { Text } from "@/components/ui/text"
 import { ROUTES } from "@/constants/routes"
 import { formatCurrency } from "@/lib/formatters"
 import type { Result } from "@/lib/tryCatch"
-import { type Account, AccountType } from "@/prisma/generated/prisma-client"
 import { deleteAccount } from "../../actions/accounts.action"
 import { revalidateServerPath } from "../../actions/common.action"
 

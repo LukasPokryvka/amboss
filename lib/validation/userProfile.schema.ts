@@ -1,10 +1,5 @@
+import { Currency, IncomeFrequency, IncomeType, Language } from "@prisma/client"
 import z from "zod"
-import {
-  Currency,
-  IncomeFrequency,
-  IncomeType,
-  Language,
-} from "@/prisma/generated/prisma-client"
 
 export const UserProfileSchema = z.object({
   name: z.string().optional(),

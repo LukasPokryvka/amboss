@@ -1,11 +1,11 @@
 "use client"
 
+import type { UserProfile } from "@prisma/client"
 import dynamic from "next/dynamic"
 import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Heading } from "@/components/ui/heading"
 import { Text } from "@/components/ui/text"
-import type { UserProfile } from "@/prisma/generated/prisma-client"
 
 const ProfileFormModal = dynamic(
   () => import("./ProfileFormModal").then((mod) => mod.ProfileFormModal),
