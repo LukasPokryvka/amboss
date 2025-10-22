@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@clerk/nextjs": "^6.33.7",
+    "@formatjs/intl-localematcher": "^0.6.2",
     "@radix-ui/react-avatar": "^1.1.10",
     "@radix-ui/react-collapsible": "^1.1.12",
     "@radix-ui/react-dialog": "^1.1.15",
@@ -21,6 +22,7 @@
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "lucide-react": "^0.546.0",
+    "negotiator": "^1.0.0",
     "next": "16.0.0",
     "next-themes": "^0.4.6",
     "react": "19.2.0",
@@ -30,6 +32,7 @@
   "devDependencies": {
     "@biomejs/biome": "2.2.0",
     "@tailwindcss/postcss": "^4",
+    "@types/negotiator": "^0.6.4",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",

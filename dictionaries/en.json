@@ -1,0 +1,19 @@
+{
+  "auth": {
+    "sign_in": "Sign in",
+    "sign_up": "Sign up",
+    "sign_out": "Sign out"
+  },
+  "navigation": {
+    "quick_menu": {
+      "title": "Quick Menu",
+      "add": "Add",
+      "expense": "Expense",
+      "income": "Income"
+    },
+    "menu": {
+      "title": "Menu",
+      "dashboard": "Dashboard"
+    }
+  }
+}

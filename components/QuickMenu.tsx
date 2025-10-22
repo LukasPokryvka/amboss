@@ -19,7 +19,8 @@ import {
 } from '@/components/ui/sidebar'
 
 export const QuickMenu = ({
-  items
+  items,
+  title
 }: {
   items: {
     title: string
@@ -30,12 +31,13 @@ export const QuickMenu = ({
       url: string
     }[]
   }[]
+  title: string
 }) => {
   const pathname = usePathname()
 
   return (
     <SidebarGroup>
-      <SidebarGroupLabel>Quick Menu</SidebarGroupLabel>
+      <SidebarGroupLabel>{title}</SidebarGroupLabel>
       <SidebarMenu>
         {items.map(item => {
           const isActive = pathname === item.url

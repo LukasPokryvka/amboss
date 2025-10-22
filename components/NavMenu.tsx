@@ -12,19 +12,21 @@ import {
 } from '@/components/ui/sidebar'
 
 export const NavMenu = ({
-  items
+  items,
+  title
 }: {
   items: {
     title: string
     url: string
     icon: LucideIcon
   }[]
+  title: string
 }) => {
   const pathname = usePathname()
 
   return (
     <SidebarGroup>
-      <SidebarGroupLabel>Menu</SidebarGroupLabel>
+      <SidebarGroupLabel>{title}</SidebarGroupLabel>
       <SidebarMenu>
         {items.map(item => {
           const isActive = pathname === item.url

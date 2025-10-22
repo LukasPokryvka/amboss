@@ -1,3 +1,4 @@
+import type { ReactNode } from 'react'
 import { AppSidebar } from '@/components/AppSidebar'
 import {
   Breadcrumb,
@@ -13,11 +14,21 @@ import {
   SidebarProvider,
   SidebarTrigger
 } from '@/components/ui/sidebar'
+import { getDictionary } from '../dictionaries'
 
-const AuthenticatedLayout = ({ children }: { children: React.ReactNode }) => {
+const AuthenticatedLayout = async ({
+  children,
+  params
+}: {
+  children: ReactNode
+  params: Promise<{ lang: string }>
+}) => {
+  const { lang } = await params
+  const dict = await getDictionary(lang as 'en' | 'sk')
+
   return (
     <SidebarProvider>
-      <AppSidebar />
+      <AppSidebar dict={dict} />
       <SidebarInset>
         <header className="flex h-16 shrink-0 items-center gap-2 transition-[width,height] ease-linear group-has-data-[collapsible=icon]/sidebar-wrapper:h-12">
           <div className="flex items-center gap-2 px-4">

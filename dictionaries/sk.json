@@ -1,0 +1,19 @@
+{
+  "auth": {
+    "sign_in": "Prihlásiť sa",
+    "sign_up": "Zaregistrovať sa",
+    "sign_out": "Odhlásiť sa"
+  },
+  "navigation": {
+    "quick_menu": {
+      "title": "Rýchle menu",
+      "add": "Pridať",
+      "expense": "Výdavok",
+      "income": "Príjem"
+    },
+    "menu": {
+      "title": "Menu",
+      "dashboard": "Domov"
+    }
+  }
+}

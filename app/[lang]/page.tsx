@@ -7,24 +7,31 @@ import {
 } from '@clerk/nextjs'
 import { Suspense } from 'react'
 import { Button } from '@/components/ui/button'
-import './globals.css'
+import { getDictionary } from './dictionaries'
 
-const HomePage = () => {
+const HomePage = async ({
+  params
+}: {
+  params: Promise<{ lang: 'en' | 'sk' }>
+}) => {
+  const { lang } = await params
+  const dict = await getDictionary(lang)
+
   return (
     <div className="flex min-h-screen flex-col">
       <header className="flex justify-end items-center p-4 gap-4 h-16">
         <Suspense>
           <SignedOut>
             <SignInButton>
-              <Button variant="outline">Sign In</Button>
+              <Button variant="outline">{dict.auth.sign_in}</Button>
             </SignInButton>
             <SignUpButton>
-              <Button>Sign Up</Button>
+              <Button>{dict.auth.sign_up}</Button>
             </SignUpButton>
           </SignedOut>
           <SignedIn>
             <SignOutButton>
-              <Button variant="outline">Sign Out</Button>
+              <Button variant="outline">{dict.auth.sign_out}</Button>
             </SignOutButton>
           </SignedIn>
         </Suspense>
