@@ -16,7 +16,6 @@ import { LogoLink } from './LogoLink'
 import { NavMenu } from './NavMenu'
 import { QuickMenu } from './QuickMenu'
 
-// This is sample data.
 const data = {
   quickMenuItems: [
     {
@@ -44,20 +43,20 @@ const data = {
   ]
 }
 
-export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
-  return (
-    <Sidebar collapsible="icon" {...props}>
-      <SidebarHeader>
-        <LogoLink />
-      </SidebarHeader>
-      <SidebarContent>
-        <QuickMenu items={data.quickMenuItems} />
-        <NavMenu items={data.menuItems} />
-      </SidebarContent>
-      <SidebarFooter>
-        <NavUser />
-      </SidebarFooter>
-      <SidebarRail />
-    </Sidebar>
-  )
-}
+export const AppSidebar = ({
+  ...props
+}: React.ComponentProps<typeof Sidebar>) => (
+  <Sidebar collapsible="icon" {...props}>
+    <SidebarHeader>
+      <LogoLink />
+    </SidebarHeader>
+    <SidebarContent>
+      <QuickMenu items={data.quickMenuItems} />
+      <NavMenu items={data.menuItems} />
+    </SidebarContent>
+    <SidebarFooter>
+      <NavUser />
+    </SidebarFooter>
+    <SidebarRail />
+  </Sidebar>
+)
