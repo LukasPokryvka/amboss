@@ -1,16 +1,8 @@
+import { ClerkProvider } from '@clerk/nextjs'
 import type { Metadata } from 'next'
 import { Geist, Geist_Mono } from 'next/font/google'
-import './globals.css'
-import {
-  ClerkProvider,
-  SignedIn,
-  SignedOut,
-  SignInButton,
-  SignUpButton,
-  UserButton
-} from '@clerk/nextjs'
 import { ThemeProvider } from '@/components/ThemeProvider'
-import { Button } from '@/components/ui/button'
+import './globals.css'
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -40,19 +32,6 @@ const RootLayout = ({ children }: { children: React.ReactNode }) => {
             enableSystem
             disableTransitionOnChange
           >
-            <header className="flex justify-end items-center p-4 gap-4 h-16">
-              <SignedOut>
-                <SignInButton>
-                  <Button variant="outline">Sign In</Button>
-                </SignInButton>
-                <SignUpButton>
-                  <Button>Sign Up</Button>
-                </SignUpButton>
-              </SignedOut>
-              <SignedIn>
-                <UserButton />
-              </SignedIn>
-            </header>
             {children}
           </ThemeProvider>
         </body>

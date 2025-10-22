@@ -1,9 +1,34 @@
+import {
+  SignedIn,
+  SignedOut,
+  SignInButton,
+  SignOutButton,
+  SignUpButton
+} from '@clerk/nextjs'
 import { Button } from '@/components/ui/button'
+import './globals.css'
 
 const HomePage = () => {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <Button>test</Button>
+    <div className="flex min-h-screen flex-col">
+      <header className="flex justify-end items-center p-4 gap-4 h-16">
+        <SignedOut>
+          <SignInButton>
+            <Button variant="outline">Sign In</Button>
+          </SignInButton>
+          <SignUpButton>
+            <Button>Sign Up</Button>
+          </SignUpButton>
+        </SignedOut>
+        <SignedIn>
+          <SignOutButton>
+            <Button variant="outline">Sign Out</Button>
+          </SignOutButton>
+        </SignedIn>
+      </header>
+      <div className="flex-1 flex items-center justify-center">
+        <Button>test</Button>
+      </div>
     </div>
   )
 }
