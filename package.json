@@ -7,11 +7,15 @@
     "build": "next build",
     "start": "next start",
     "lint": "biome check",
-    "format": "biome format --write"
+    "format": "biome format --write",
+    "docker:init:dev": "docker compose --env-file ./.env up -d",
+    "postinstall": "npx prisma generate"
   },
   "dependencies": {
     "@clerk/nextjs": "^6.33.7",
     "@formatjs/intl-localematcher": "^0.6.2",
+    "@prisma/client": "^6.18.0",
+    "@prisma/extension-accelerate": "^2.0.2",
     "@radix-ui/react-avatar": "^1.1.10",
     "@radix-ui/react-collapsible": "^1.1.12",
     "@radix-ui/react-dialog": "^1.1.15",
@@ -21,6 +25,7 @@
     "@radix-ui/react-tooltip": "^1.2.8",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
+    "dotenv": "^17.2.3",
     "lucide-react": "^0.546.0",
     "negotiator": "^1.0.0",
     "next": "16.0.0",
@@ -38,6 +43,7 @@
     "@types/react-dom": "^19",
     "babel-plugin-react-compiler": "1.0.0",
     "next-devtools-mcp": "^0.2.1",
+    "prisma": "^6.18.0",
     "shadcn": "^3.4.2",
     "tailwindcss": "^4",
     "tw-animate-css": "^1.4.0",

@@ -33,7 +33,9 @@ const isPublicPath = (pathname: string) => {
   const withoutLocale = stripLocale(pathname)
 
   // extend this if you add more public routes
-  return withoutLocale === ROUTES.Landing()
+  return (
+    withoutLocale === ROUTES.Landing() || withoutLocale === '/api/webhooks(.*)'
+  )
 }
 
 export const proxy = clerkMiddleware(async (auth, req) => {
