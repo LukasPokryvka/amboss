@@ -1,3 +1,3 @@
-import type en from './en.json'
+import type { getDictionary } from '@/app/[lang]/dictionaries'
 
-export type Dictionary = typeof en
+export type Dictionary = Awaited<ReturnType<typeof getDictionary>>

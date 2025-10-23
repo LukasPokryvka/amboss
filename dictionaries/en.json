@@ -15,5 +15,12 @@
       "title": "Menu",
       "dashboard": "Dashboard"
     }
+  },
+  "user_menu": {
+    "account": "Account",
+    "billing": "Billing",
+    "notifications": "Notifications",
+    "sign_out": "Sign out",
+    "upgrade_to_pro": "Upgrade to Pro"
   }
 }

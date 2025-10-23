@@ -25,10 +25,11 @@ import {
   SidebarMenuItem,
   useSidebar
 } from '@/components/ui/sidebar'
+import type { Dictionary } from '@/dictionaries/dict'
 import { Skeleton } from './ui/skeleton'
 import { Text } from './ui/text'
 
-export const NavUser = () => {
+export const NavUser = ({ dict }: { dict: Dictionary['user_menu'] }) => {
   const { isMobile } = useSidebar()
   const { user, isLoaded } = useUser()
   const { openUserProfile, signOut } = useClerk()
@@ -81,7 +82,7 @@ export const NavUser = () => {
             <DropdownMenuGroup>
               <DropdownMenuItem>
                 <Sparkles />
-                Upgrade to Pro
+                {dict.upgrade_to_pro}
               </DropdownMenuItem>
             </DropdownMenuGroup>
             <DropdownMenuSeparator />
@@ -92,15 +93,15 @@ export const NavUser = () => {
                 }}
               >
                 <BadgeCheck />
-                Account
+                {dict.account}
               </DropdownMenuItem>
               <DropdownMenuItem>
                 <CreditCard />
-                Billing
+                {dict.billing}
               </DropdownMenuItem>
               <DropdownMenuItem>
                 <Bell />
-                Notifications
+                {dict.notifications}
               </DropdownMenuItem>
             </DropdownMenuGroup>
             <DropdownMenuSeparator />
@@ -110,7 +111,7 @@ export const NavUser = () => {
               }}
             >
               <LogOut />
-              Log out
+              {dict.sign_out}
             </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>

@@ -15,5 +15,12 @@
       "title": "Menu",
       "dashboard": "Domov"
     }
+  },
+  "user_menu": {
+    "account": "Účet",
+    "billing": "Platby",
+    "notifications": "Pripomienky",
+    "sign_out": "Odhlásiť sa",
+    "upgrade_to_pro": "Upgrade na Pro"
   }
 }

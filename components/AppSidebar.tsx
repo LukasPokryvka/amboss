@@ -16,19 +16,19 @@ import { LogoLink } from './LogoLink'
 import { NavMenu } from './NavMenu'
 import { QuickMenu } from './QuickMenu'
 
-const createMenuData = (dict: Dictionary) => ({
+const createMenuData = (dict: Dictionary['navigation']) => ({
   quickMenuItems: [
     {
-      title: dict.navigation.quick_menu.add,
+      title: dict.quick_menu.add,
       url: '#',
       icon: Plus,
       items: [
         {
-          title: dict.navigation.quick_menu.expense,
+          title: dict.quick_menu.expense,
           url: '#'
         },
         {
-          title: dict.navigation.quick_menu.income,
+          title: dict.quick_menu.income,
           url: '#'
         }
       ]
@@ -36,7 +36,7 @@ const createMenuData = (dict: Dictionary) => ({
   ],
   menuItems: [
     {
-      title: dict.navigation.menu.dashboard,
+      title: dict.menu.dashboard,
       url: ROUTES.Dashboard(),
       icon: Home
     }
@@ -47,7 +47,7 @@ export const AppSidebar = ({
   dict,
   ...props
 }: ComponentProps<typeof Sidebar> & { dict: Dictionary }) => {
-  const menuData = createMenuData(dict)
+  const menuData = createMenuData(dict.navigation)
 
   return (
     <Sidebar collapsible="icon" {...props}>
@@ -65,7 +65,7 @@ export const AppSidebar = ({
         />
       </SidebarContent>
       <SidebarFooter>
-        <NavUser />
+        <NavUser dict={dict.user_menu} />
       </SidebarFooter>
       <SidebarRail />
     </Sidebar>
