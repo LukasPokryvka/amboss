@@ -9,6 +9,7 @@
     "lint": "biome check",
     "format": "biome format --write",
     "docker:init:dev": "docker compose --env-file ./.env up -d",
+    "prisma:generate": "prisma generate --schema=./prisma/schema.prisma",
     "postinstall": "npx prisma generate"
   },
   "dependencies": {

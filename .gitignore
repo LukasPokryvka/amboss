@@ -44,5 +44,3 @@ next-env.d.ts
 
 #cursor
 .cursor
-/lib/generated/prisma
-**/generated
