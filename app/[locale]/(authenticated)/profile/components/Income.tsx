@@ -3,17 +3,17 @@
 import { Pencil } from 'lucide-react'
 import { useTranslations } from 'next-intl'
 import { use, useState } from 'react'
+import type {
+  Frequency,
+  Income as IncomeType
+} from '@/app/generated/prisma/client'
+import { IncomeType as IncomeTypeEnum } from '@/app/generated/prisma/enums'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Text } from '@/components/ui/text'
 import { formatCurrency } from '@/lib/formatters'
 import { IncomeFrequencyMap, IncomeTypeMap } from '@/lib/maps/IncomeMap'
-import type {
-  Frequency,
-  Income as IncomeType
-} from '@/prisma/lib/generated/prisma/client'
-import { IncomeType as IncomeTypeEnum } from '@/prisma/lib/generated/prisma/enums'
 import type { Locale } from '@/types/common'
 import { ProfileDialog } from './ProfileDialog'
 

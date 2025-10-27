@@ -1,6 +1,6 @@
+import { Frequency, IncomeType } from '@/app/generated/prisma/enums'
 import en from '@/messages/en.json'
 import sk from '@/messages/sk.json'
-import { Frequency, IncomeType } from '@/prisma/lib/generated/prisma/enums'
 import type { Locale } from '@/types/common'
 
 export const IncomeTypeMap = (locale: Locale) => {
