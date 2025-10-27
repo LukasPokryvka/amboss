@@ -1,5 +1,5 @@
+import { Frequency, IncomeType } from '@prisma/client'
 import z from 'zod'
-import { Frequency, IncomeType } from '@/app/generated/prisma/enums'
 
 export const IncomeSchema = z.object({
   title: z.string().min(1),

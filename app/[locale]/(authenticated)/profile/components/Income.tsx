@@ -1,13 +1,10 @@
 'use client'
 
+import type { Frequency, Income as IncomeType } from '@prisma/client'
+import { IncomeType as IncomeTypeEnum } from '@prisma/client'
 import { Pencil } from 'lucide-react'
 import { useTranslations } from 'next-intl'
 import { use, useState } from 'react'
-import type {
-  Frequency,
-  Income as IncomeType
-} from '@/app/generated/prisma/client'
-import { IncomeType as IncomeTypeEnum } from '@/app/generated/prisma/enums'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'

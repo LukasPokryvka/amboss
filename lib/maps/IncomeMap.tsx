@@ -1,4 +1,4 @@
-import { Frequency, IncomeType } from '@/app/generated/prisma/enums'
+import { Frequency, IncomeType } from '@prisma/client'
 import en from '@/messages/en.json'
 import sk from '@/messages/sk.json'
 import type { Locale } from '@/types/common'
