@@ -1,11 +1,11 @@
 'use client'
 
-import Link from 'next/link'
 import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem
 } from '@/components/ui/sidebar'
+import { Link } from '@/i18n/navigation'
 import { ROUTES } from '@/lib/routes'
 import { Text } from './ui/text'
 

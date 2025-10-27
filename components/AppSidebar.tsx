@@ -1,6 +1,8 @@
 'use client'
 
 import { Home, Plus } from 'lucide-react'
+import { useTranslations } from 'next-intl'
+import type { getTranslations } from 'next-intl/server'
 import type { ComponentProps } from 'react'
 import { NavUser } from '@/components/NavUser'
 import {
@@ -10,25 +12,24 @@ import {
   SidebarHeader,
   SidebarRail
 } from '@/components/ui/sidebar'
-import type { Dictionary } from '@/dictionaries/dict'
 import { ROUTES } from '@/lib/routes'
 import { LogoLink } from './LogoLink'
 import { NavMenu } from './NavMenu'
 import { QuickMenu } from './QuickMenu'
 
-const createMenuData = (dict: Dictionary['navigation']) => ({
+const createMenuData = (t: Awaited<ReturnType<typeof getTranslations>>) => ({
   quickMenuItems: [
     {
-      title: dict.quick_menu.add,
+      title: t('quick_menu.add'),
       url: '#',
       icon: Plus,
       items: [
         {
-          title: dict.quick_menu.expense,
+          title: t('quick_menu.expense'),
           url: '#'
         },
         {
-          title: dict.quick_menu.income,
+          title: t('quick_menu.income'),
           url: '#'
         }
       ]
@@ -36,18 +37,16 @@ const createMenuData = (dict: Dictionary['navigation']) => ({
   ],
   menuItems: [
     {
-      title: dict.menu.dashboard,
+      title: t('menu.dashboard'),
       url: ROUTES.Dashboard(),
       icon: Home
     }
   ]
 })
 
-export const AppSidebar = ({
-  dict,
-  ...props
-}: ComponentProps<typeof Sidebar> & { dict: Dictionary }) => {
-  const menuData = createMenuData(dict.navigation)
+export const AppSidebar = ({ ...props }: ComponentProps<typeof Sidebar>) => {
+  const t = useTranslations('navigation')
+  const menuData = createMenuData(t)
 
   return (
     <Sidebar collapsible="icon" {...props}>
@@ -56,16 +55,13 @@ export const AppSidebar = ({
       </SidebarHeader>
       <SidebarContent>
         <QuickMenu
-          title={dict.navigation.quick_menu.title}
+          title={t('quick_menu.title')}
           items={menuData.quickMenuItems}
         />
-        <NavMenu
-          title={dict.navigation.menu.title}
-          items={menuData.menuItems}
-        />
+        <NavMenu title={t('menu.title')} items={menuData.menuItems} />
       </SidebarContent>
       <SidebarFooter>
-        <NavUser dict={dict.user_menu} />
+        <NavUser />
       </SidebarFooter>
       <SidebarRail />
     </Sidebar>

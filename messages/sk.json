@@ -1,0 +1,67 @@
+{
+  "auth": {
+    "sign_in": "Prihlásiť sa",
+    "sign_up": "Zaregistrovať sa",
+    "sign_out": "Odhlásiť sa"
+  },
+  "navigation": {
+    "quick_menu": {
+      "title": "Rýchle menu",
+      "add": "Pridať",
+      "expense": "Výdavok",
+      "income": "Príjem"
+    },
+    "menu": {
+      "title": "Menu",
+      "dashboard": "Domov"
+    }
+  },
+  "user_menu": {
+    "account": "Účet",
+    "billing": "Platby",
+    "notifications": "Pripomienky",
+    "sign_out": "Odhlásiť sa",
+    "upgrade_to_pro": "Upgrade na Pro",
+    "profile": "Profil"
+  },
+  "profile": {
+    "title": "Profil",
+    "no_income": "Nezadali ste svoj mesačný príjem.",
+    "income": {
+      "title": "Príjem",
+      "title_label": "Názov",
+      "type_label": "Typ",
+      "fixed_net_label": "Fixná mzda",
+      "hourly_rate_label": "Hodinová mzda",
+      "hours_per_day_label": "Počet hodín za deň",
+      "frequency_label": "Frekvencia"
+    }
+  },
+  "income": {
+    "title": "Príjem",
+    "income_title": "Názov",
+    "income_type": "Typ",
+    "income_fixed_net": "Fixná mzda",
+    "income_hourly_rate": "Hodinová mzda",
+    "income_hours_per_day": "Počet hodín za deň",
+    "income_frequency": "Frekvencia",
+    "income_type_enum": {
+      "FULL_TIME": "Trvalý príjem",
+      "CONTRACT": "Kontrakt",
+      "FREELANCE": "Freelance",
+      "ONE_OFF": "Jednorázový príjem"
+    },
+    "income_frequency_enum": {
+      "MONTHLY": "Mesačne",
+      "WEEKLY": "Týždenne",
+      "DAILY": "Denne",
+      "YEARLY": "Ročne"
+    }
+  },
+  "button": {
+    "save": "Uložiť",
+    "cancel": "Zrušiť",
+    "delete": "Vymazať",
+    "edit": "Upraviť"
+  }
+}

@@ -5,17 +5,20 @@ import {
   SignOutButton,
   SignUpButton
 } from '@clerk/nextjs'
+import { getTranslations } from 'next-intl/server'
 import { Suspense } from 'react'
 import { Button } from '@/components/ui/button'
-import { getDictionary } from './dictionaries'
+import { Link } from '@/i18n/navigation'
+import { routing } from '@/i18n/routing'
+import { ROUTES } from '@/lib/routes'
 
-const HomePage = async ({
-  params
-}: {
-  params: Promise<{ lang: 'en' | 'sk' }>
-}) => {
-  const { lang } = await params
-  const dict = await getDictionary(lang)
+export function generateStaticParams() {
+  return routing.locales.map(locale => ({ locale }))
+}
+
+const HomePage = async () => {
+  const t = await getTranslations('auth')
+  const tNavigation = await getTranslations('navigation')
 
   return (
     <div className="flex min-h-screen flex-col">
@@ -23,15 +26,20 @@ const HomePage = async ({
         <Suspense>
           <SignedOut>
             <SignInButton>
-              <Button variant="outline">{dict.auth.sign_in}</Button>
+              <Button variant="outline">{t('sign_in')}</Button>
             </SignInButton>
             <SignUpButton>
-              <Button>{dict.auth.sign_up}</Button>
+              <Button>{t('sign_up')}</Button>
             </SignUpButton>
           </SignedOut>
           <SignedIn>
+            <Button asChild>
+              <Link href={ROUTES.Dashboard()}>
+                {tNavigation('menu.dashboard')}
+              </Link>
+            </Button>
             <SignOutButton>
-              <Button variant="outline">{dict.auth.sign_out}</Button>
+              <Button variant="outline">{t('sign_out')}</Button>
             </SignOutButton>
           </SignedIn>
         </Suspense>

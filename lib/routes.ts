@@ -3,5 +3,6 @@ export const ROUTES = {
   Landing: () => '/',
 
   // PRIVATE
-  Dashboard: () => '/dashboard'
+  Dashboard: () => '/dashboard',
+  Profile: () => '/profile'
 } as const

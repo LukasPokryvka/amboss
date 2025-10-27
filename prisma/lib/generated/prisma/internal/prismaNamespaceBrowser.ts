@@ -48,7 +48,11 @@ export const AnyNull = runtime.objectEnumValues.instances.AnyNull
 
 
 export const ModelName = {
-  User: 'User'
+  User: 'User',
+  Income: 'Income',
+  Account: 'Account',
+  Transaction: 'Transaction',
+  IncomeEvent: 'IncomeEvent'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -78,6 +82,69 @@ export const UserScalarFieldEnum = {
 } as const
 
 export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
+
+
+export const IncomeScalarFieldEnum = {
+  id: 'id',
+  clerkId: 'clerkId',
+  title: 'title',
+  type: 'type',
+  fixedNet: 'fixedNet',
+  hourlyRate: 'hourlyRate',
+  hoursPerDay: 'hoursPerDay',
+  frequency: 'frequency',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type IncomeScalarFieldEnum = (typeof IncomeScalarFieldEnum)[keyof typeof IncomeScalarFieldEnum]
+
+
+export const AccountScalarFieldEnum = {
+  id: 'id',
+  clerkId: 'clerkId',
+  name: 'name',
+  currency: 'currency',
+  balance: 'balance',
+  interestRate: 'interestRate',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type AccountScalarFieldEnum = (typeof AccountScalarFieldEnum)[keyof typeof AccountScalarFieldEnum]
+
+
+export const TransactionScalarFieldEnum = {
+  id: 'id',
+  clerkId: 'clerkId',
+  accountId: 'accountId',
+  fromAccountId: 'fromAccountId',
+  toAccountId: 'toAccountId',
+  type: 'type',
+  amount: 'amount',
+  currency: 'currency',
+  executedAt: 'executedAt',
+  description: 'description',
+  createdAt: 'createdAt'
+} as const
+
+export type TransactionScalarFieldEnum = (typeof TransactionScalarFieldEnum)[keyof typeof TransactionScalarFieldEnum]
+
+
+export const IncomeEventScalarFieldEnum = {
+  id: 'id',
+  incomeId: 'incomeId',
+  clerkId: 'clerkId',
+  accountId: 'accountId',
+  type: 'type',
+  amount: 'amount',
+  netAmount: 'netAmount',
+  receivedAt: 'receivedAt',
+  description: 'description',
+  createdAt: 'createdAt'
+} as const
+
+export type IncomeEventScalarFieldEnum = (typeof IncomeEventScalarFieldEnum)[keyof typeof IncomeEventScalarFieldEnum]
 
 
 export const SortOrder = {

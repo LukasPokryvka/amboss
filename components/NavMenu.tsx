@@ -1,7 +1,6 @@
 'use client'
 
 import type { LucideIcon } from 'lucide-react'
-import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import {
   SidebarGroup,
@@ -10,6 +9,7 @@ import {
   SidebarMenuButton,
   SidebarMenuItem
 } from '@/components/ui/sidebar'
+import { Link } from '@/i18n/navigation'
 
 export const NavMenu = ({
   items,
@@ -29,7 +29,8 @@ export const NavMenu = ({
       <SidebarGroupLabel>{title}</SidebarGroupLabel>
       <SidebarMenu>
         {items.map(item => {
-          const isActive = pathname === item.url
+          const isActive = pathname.replace(/^\/[a-z]{2}/, '') === item.url
+
           return (
             <SidebarMenuItem key={item.title}>
               <SidebarMenuButton

@@ -1,0 +1,67 @@
+{
+  "auth": {
+    "sign_in": "Sign in",
+    "sign_up": "Sign up",
+    "sign_out": "Sign out"
+  },
+  "navigation": {
+    "quick_menu": {
+      "title": "Quick Menu",
+      "add": "Add",
+      "expense": "Expense",
+      "income": "Income"
+    },
+    "menu": {
+      "title": "Menu",
+      "dashboard": "Dashboard"
+    }
+  },
+  "user_menu": {
+    "account": "Account",
+    "billing": "Billing",
+    "notifications": "Notifications",
+    "sign_out": "Sign out",
+    "upgrade_to_pro": "Upgrade to Pro",
+    "profile": "Profile"
+  },
+  "profile": {
+    "title": "Profile",
+    "no_income": "You haven't set your monthly income yet.",
+    "income": {
+      "title": "Income",
+      "title_label": "Title",
+      "type_label": "Type",
+      "fixed_net_label": "Fixed Net",
+      "hourly_rate_label": "Hourly Rate",
+      "hours_per_day_label": "Hours Per Day",
+      "frequency_label": "Frequency"
+    }
+  },
+  "income": {
+    "title": "Income",
+    "income_title": "Title",
+    "income_type": "Type",
+    "income_fixed_net": "Fixed Net",
+    "income_hourly_rate": "Hourly Rate",
+    "income_hours_per_day": "Hours Per Day",
+    "income_frequency": "Frequency",
+    "income_type_enum": {
+      "FULL_TIME": "Full Time",
+      "CONTRACT": "Contract",
+      "FREELANCE": "Freelance",
+      "ONE_OFF": "One Off"
+    },
+    "income_frequency_enum": {
+      "MONTHLY": "Monthly",
+      "WEEKLY": "Weekly",
+      "DAILY": "Daily",
+      "YEARLY": "Yearly"
+    }
+  },
+  "button": {
+    "save": "Save",
+    "cancel": "Cancel",
+    "delete": "Delete",
+    "edit": "Edit"
+  }
+}

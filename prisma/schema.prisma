@@ -8,12 +8,106 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+enum IncomeType {
+  FULL_TIME
+  CONTRACT
+  FREELANCE
+  ONE_OFF
+}
+
+enum TransactionType {
+  INCOME
+  EXPENSE
+  TRANSFER
+}
+
+enum Frequency {
+  MONTHLY
+  WEEKLY
+  DAILY
+  YEARLY
+}
+
 model User {
-  id      Int     @id @default(autoincrement())
-  clerkId String  @unique
-  email   String  @unique
+  id        Int      @id @default(autoincrement())
+  clerkId   String   @unique
+  email     String   @unique
   firstName String?
   lastName  String?
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+
+  accounts     Account[]
+  transactions Transaction[]
+  Income       Income[]
+  IncomeEvent  IncomeEvent[]
+}
+
+model Income {
+  id          Int        @id @default(autoincrement())
+  clerkId     String
+  title       String
+  type        IncomeType
+  fixedNet    Float?
+  hourlyRate  Float?
+  hoursPerDay Float?
+  frequency   Frequency?
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime   @updatedAt
+
+  user   User          @relation(fields: [clerkId], references: [clerkId], onDelete: Cascade)
+  events IncomeEvent[]
+}
+
+model Account {
+  id           Int      @id @default(autoincrement())
+  clerkId      String
+  name         String
+  currency     String   @default("EUR")
+  balance      Float    @default(0)
+  interestRate Float?
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  transactions     Transaction[]
+  fromTransactions Transaction[] @relation("TxFromAccount")
+  toTransactions   Transaction[] @relation("TxToAccount")
+  user             User          @relation(fields: [clerkId], references: [clerkId], onDelete: Cascade)
+  IncomeEvent      IncomeEvent[]
+}
+
+model Transaction {
+  id            Int             @id @default(autoincrement())
+  clerkId       String
+  accountId     Int?
+  fromAccountId Int?
+  toAccountId   Int?
+  type          TransactionType
+  amount        Float
+  currency      String          @default("EUR")
+  executedAt    DateTime        @default(now())
+  description   String?
+  createdAt     DateTime        @default(now())
+
+  user        User     @relation(fields: [clerkId], references: [clerkId], onDelete: Cascade)
+  fromAccount Account? @relation("TxFromAccount", fields: [fromAccountId], references: [id], onDelete: SetNull)
+  toAccount   Account? @relation("TxToAccount", fields: [toAccountId], references: [id], onDelete: SetNull)
+  Account     Account? @relation(fields: [accountId], references: [id])
+}
+
+model IncomeEvent {
+  id          Int        @id @default(autoincrement())
+  incomeId    Int?
+  clerkId     String
+  accountId   Int?
+  type        IncomeType
+  amount      Float
+  netAmount   Float?
+  receivedAt  DateTime   @default(now())
+  description String?
+  createdAt   DateTime   @default(now())
+
+  income  Income?  @relation(fields: [incomeId], references: [id], onDelete: SetNull)
+  user    User     @relation(fields: [clerkId], references: [clerkId], onDelete: Cascade)
+  account Account? @relation(fields: [accountId], references: [id], onDelete: SetNull)
 }

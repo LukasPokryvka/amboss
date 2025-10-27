@@ -7,8 +7,10 @@ import {
   ChevronsUpDown,
   CreditCard,
   LogOut,
-  Sparkles
+  Sparkles,
+  User
 } from 'lucide-react'
+import { useTranslations } from 'next-intl'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import {
   DropdownMenu,
@@ -25,14 +27,16 @@ import {
   SidebarMenuItem,
   useSidebar
 } from '@/components/ui/sidebar'
-import type { Dictionary } from '@/dictionaries/dict'
+import { Link } from '@/i18n/navigation'
+import { ROUTES } from '@/lib/routes'
 import { Skeleton } from './ui/skeleton'
 import { Text } from './ui/text'
 
-export const NavUser = ({ dict }: { dict: Dictionary['user_menu'] }) => {
+export const NavUser = () => {
   const { isMobile } = useSidebar()
   const { user, isLoaded } = useUser()
   const { openUserProfile, signOut } = useClerk()
+  const t = useTranslations('user_menu')
 
   if (!isLoaded) return <Skeleton className="w-full h-12" />
 
@@ -82,7 +86,7 @@ export const NavUser = ({ dict }: { dict: Dictionary['user_menu'] }) => {
             <DropdownMenuGroup>
               <DropdownMenuItem>
                 <Sparkles />
-                {dict.upgrade_to_pro}
+                {t('upgrade_to_pro')}
               </DropdownMenuItem>
             </DropdownMenuGroup>
             <DropdownMenuSeparator />
@@ -93,15 +97,21 @@ export const NavUser = ({ dict }: { dict: Dictionary['user_menu'] }) => {
                 }}
               >
                 <BadgeCheck />
-                {dict.account}
+                {t('account')}
               </DropdownMenuItem>
               <DropdownMenuItem>
                 <CreditCard />
-                {dict.billing}
+                {t('billing')}
+              </DropdownMenuItem>
+              <DropdownMenuItem asChild>
+                <Link href={ROUTES.Profile()}>
+                  <User />
+                  {t('profile')}
+                </Link>
               </DropdownMenuItem>
               <DropdownMenuItem>
                 <Bell />
-                {dict.notifications}
+                {t('notifications')}
               </DropdownMenuItem>
             </DropdownMenuGroup>
             <DropdownMenuSeparator />
@@ -111,7 +121,7 @@ export const NavUser = ({ dict }: { dict: Dictionary['user_menu'] }) => {
               }}
             >
               <LogOut />
-              {dict.sign_out}
+              {t('sign_out')}
             </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
