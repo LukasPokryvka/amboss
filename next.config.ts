@@ -2,8 +2,7 @@ import type { NextConfig } from 'next'
 import createNextIntlPlugin from 'next-intl/plugin'
 
 const nextConfig: NextConfig = {
-  reactCompiler: true,
-  cacheComponents: true
+  reactCompiler: true
 }
 
 const withNextIntl = createNextIntlPlugin()

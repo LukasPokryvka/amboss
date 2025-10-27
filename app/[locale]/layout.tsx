@@ -24,6 +24,10 @@ export const metadata: Metadata = {
   description: 'Amboss is a platform for managing your business'
 }
 
+export function generateStaticParams() {
+  return routing.locales.map(locale => ({ locale }))
+}
+
 const RootLayout = async ({
   children,
   params
@@ -32,6 +36,7 @@ const RootLayout = async ({
   params: Promise<{ locale: string }>
 }) => {
   const { locale } = await params
+
   if (!hasLocale(routing.locales, locale)) {
     notFound()
   }

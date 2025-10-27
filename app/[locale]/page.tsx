@@ -9,12 +9,7 @@ import { getTranslations } from 'next-intl/server'
 import { Suspense } from 'react'
 import { Button } from '@/components/ui/button'
 import { Link } from '@/i18n/navigation'
-import { routing } from '@/i18n/routing'
 import { ROUTES } from '@/lib/routes'
-
-export function generateStaticParams() {
-  return routing.locales.map(locale => ({ locale }))
-}
 
 const HomePage = async () => {
   const t = await getTranslations('auth')

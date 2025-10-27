@@ -7,8 +7,6 @@ import { ROUTES } from '@/lib/routes'
 import { cn } from '@/lib/utils'
 
 export const IncomeBubble = async ({ userId }: { userId: string }) => {
-  'use cache'
-
   const result = await prisma.income.findFirst({
     where: {
       clerkId: userId

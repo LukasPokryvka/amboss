@@ -2,15 +2,10 @@ import { auth } from '@clerk/nextjs/server'
 import { redirect } from 'next/navigation'
 import { Suspense } from 'react'
 import { Skeleton } from '@/components/ui/skeleton'
-import { routing } from '@/i18n/routing'
 import { ROUTES } from '@/lib/routes'
 import type { Locale } from '@/types/common'
 import { IncomeBubble } from './components/IncomeBubble'
 import { MonthHeader } from './components/MonthHeader'
-
-export function generateStaticParams() {
-  return routing.locales.map(locale => ({ locale }))
-}
 
 const DashboardPage = async ({
   params
