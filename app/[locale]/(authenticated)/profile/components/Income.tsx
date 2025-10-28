@@ -36,13 +36,11 @@ export const Income = ({ income, locale }: IncomeProps) => {
   return (
     <>
       <Card>
-        <CardHeader>
-          <CardTitle className="flex items-center justify-between">
-            <Text className="font-semibold text-xl">{t('income.title')}</Text>
-            <Button variant="ghost" size="icon" onClick={() => setOpen(true)}>
-              <Pencil className="size-4" />
-            </Button>
-          </CardTitle>
+        <CardHeader className="flex items-start justify-between">
+          <CardTitle>{t('income.title')}</CardTitle>
+          <Button variant="ghost" size="icon" onClick={() => setOpen(true)}>
+            <Pencil className="size-4" />
+          </Button>
         </CardHeader>
         <CardContent>
           {!incomeData?.id ? (
@@ -50,10 +48,14 @@ export const Income = ({ income, locale }: IncomeProps) => {
               {t('no_income')}
             </Text>
           ) : (
-            <div className="flex flex-col">
+            <div className="flex flex-col gap-2">
               <div className="flex items-center justify-between">
-                <Text className="font-semibold">{t('income.title_label')}</Text>
-                <Text>{incomeData.title}</Text>
+                <Text className="font-semibold ">
+                  {t('income.title_label')}
+                </Text>
+                <Text className="line-clamp-1 truncate">
+                  {incomeData.title}
+                </Text>
               </div>
               <div className="flex items-center justify-between">
                 <Text className="font-semibold">{t('income.type_label')}</Text>
@@ -66,7 +68,7 @@ export const Income = ({ income, locale }: IncomeProps) => {
                   <Text className="font-semibold">
                     {t('income.hourly_rate_label')}
                   </Text>
-                  <Text>
+                  <Text className="line-clamp-1 truncate">
                     {formatCurrency({ amount: incomeData.hourlyRate, locale })}
                   </Text>
                 </div>
@@ -76,7 +78,7 @@ export const Income = ({ income, locale }: IncomeProps) => {
                   <Text className="font-semibold">
                     {t('income.hours_per_day_label')}
                   </Text>
-                  <Text>{`${incomeData.hoursPerDay}h`}</Text>
+                  <Text className="line-clamp-1 truncate">{`${incomeData.hoursPerDay}h`}</Text>
                 </div>
               )}
               {!isContract && (
@@ -84,7 +86,7 @@ export const Income = ({ income, locale }: IncomeProps) => {
                   <Text className="font-semibold">
                     {t('income.fixed_net_label')}
                   </Text>
-                  <Text>
+                  <Text className="line-clamp-1 truncate">
                     {formatCurrency({ amount: incomeData.fixedNet, locale })}
                   </Text>
                 </div>

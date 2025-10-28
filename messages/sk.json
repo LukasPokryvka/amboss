@@ -60,6 +60,13 @@
     "success_message": "Príjem bol úspešne aktualizovaný.",
     "error_message": "Príjem sa nepodarilo aktualizovať."
   },
+  "user_account": {
+    "title": "Účet používateľa",
+    "description": "Používateľ je spravovaný službou Clerk",
+    "avatar": "Avatar",
+    "name": "Meno",
+    "email": "Email"
+  },
   "button": {
     "save": "Uložiť",
     "cancel": "Zrušiť",

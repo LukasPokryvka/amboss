@@ -3,6 +3,7 @@ import type { Metadata } from 'next'
 import { Geist, Geist_Mono } from 'next/font/google'
 import { ThemeProvider } from '@/components/ThemeProvider'
 import '../globals.css'
+import { enUS, skSK } from '@clerk/localizations'
 import { notFound } from 'next/navigation'
 import { hasLocale, NextIntlClientProvider } from 'next-intl'
 import { Suspense } from 'react'
@@ -42,7 +43,7 @@ const RootLayout = async ({
   }
 
   return (
-    <ClerkProvider>
+    <ClerkProvider localization={locale === 'sk' ? skSK : enUS}>
       <html lang={(await params).locale} suppressHydrationWarning>
         <body
           className={`${geistSans.variable} ${geistMono.variable} antialiased`}

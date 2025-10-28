@@ -60,6 +60,13 @@
     "success_message": "Income updated successfully.",
     "error_message": "Income update failed."
   },
+  "user_account": {
+    "title": "User Account",
+    "description": "User is managed by Clerk",
+    "avatar": "Avatar",
+    "name": "Name",
+    "email": "Email"
+  },
   "button": {
     "save": "Save",
     "cancel": "Cancel",
