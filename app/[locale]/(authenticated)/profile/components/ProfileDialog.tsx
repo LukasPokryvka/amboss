@@ -4,6 +4,7 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import type { Income } from '@prisma/client'
 import { Frequency, IncomeType } from '@prisma/client'
 import { useTranslations } from 'next-intl'
+import { useTransition } from 'react'
 import { useForm } from 'react-hook-form'
 import { toast } from 'sonner'
 import { upsertIncome } from '@/app/actions/income.action'
@@ -34,6 +35,8 @@ export const ProfileDialog = ({
   const t = useTranslations('income')
   const tButton = useTranslations('button')
 
+  const [isPending, startTransition] = useTransition()
+
   const form = useForm<IncomeSchemaType>({
     resolver: zodResolver(IncomeSchema),
     values: {
@@ -52,22 +55,23 @@ export const ProfileDialog = ({
   const isContract =
     incomeType === IncomeType.CONTRACT || incomeType === IncomeType.FREELANCE
 
-  const onSubmit = async (data: IncomeSchemaType) => {
-    const { success, error } = await upsertIncome({
-      ...data,
-      incomeId: income?.id,
-      fixedNet: isFullTime ? data.fixedNet : null,
-      hourlyRate: isContract ? data.hourlyRate : null,
-      hoursPerDay: isContract ? data.hoursPerDay : null,
-      frequency: isFullTime ? data.frequency : null
-    })
+  const onSubmit = (data: IncomeSchemaType) => {
+    startTransition(async () => {
+      const { success } = await upsertIncome({
+        ...data,
+        incomeId: income?.id,
+        fixedNet: isFullTime ? data.fixedNet : null,
+        hourlyRate: isContract ? data.hourlyRate : null,
+        hoursPerDay: isContract ? data.hoursPerDay : null,
+        frequency: isFullTime ? data.frequency : null
+      })
 
-    if (success) {
-      toast.success('Income updated successfully')
-    } else {
-      console.error(error)
-      toast.error(error.message)
-    }
+      if (success) {
+        toast.success(t('success_message'))
+      } else {
+        toast.error(t('error_message'))
+      }
+    })
 
     form.reset()
     onOpenChange(false)
@@ -84,6 +88,7 @@ export const ProfileDialog = ({
             control={form.control}
             name="title"
             label={t('income_title')}
+            disabled={isPending}
           />
           <FormFieldSelect
             isRequired
@@ -96,6 +101,7 @@ export const ProfileDialog = ({
                 label: value
               })
             )}
+            disabled={isPending}
           />
           {isFullTime && (
             <FormFieldInput
@@ -105,6 +111,7 @@ export const ProfileDialog = ({
               label={t('income_fixed_net')}
               type="number"
               step="0.01"
+              disabled={isPending}
             />
           )}
           {isContract && (
@@ -115,6 +122,7 @@ export const ProfileDialog = ({
               label={t('income_hourly_rate')}
               type="number"
               step="0.01"
+              disabled={isPending}
             />
           )}
           {isContract && (
@@ -127,6 +135,7 @@ export const ProfileDialog = ({
               step="1"
               max={24}
               min={1}
+              disabled={isPending}
             />
           )}
           {isFullTime && (
@@ -141,9 +150,10 @@ export const ProfileDialog = ({
                   label: value
                 })
               )}
+              disabled={isPending}
             />
           )}
-          <Button type="submit" className="w-full mt-4">
+          <Button type="submit" className="w-full mt-4" disabled={isPending}>
             {tButton('save')}
           </Button>
         </form>

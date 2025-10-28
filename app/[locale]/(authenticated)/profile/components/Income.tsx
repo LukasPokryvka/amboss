@@ -3,6 +3,7 @@
 import type { Frequency, Income as IncomeType } from '@prisma/client'
 import { IncomeType as IncomeTypeEnum } from '@prisma/client'
 import { Pencil } from 'lucide-react'
+import dynamic from 'next/dynamic'
 import { useTranslations } from 'next-intl'
 import { use, useState } from 'react'
 import { Badge } from '@/components/ui/badge'
@@ -12,12 +13,11 @@ import { Text } from '@/components/ui/text'
 import { formatCurrency } from '@/lib/formatters'
 import { IncomeFrequencyMap, IncomeTypeMap } from '@/lib/maps/IncomeMap'
 import type { Locale } from '@/types/common'
-import { ProfileDialog } from './ProfileDialog'
 
-// const ProfileDialog = dynamic(
-//   () => import('./ProfileDialog').then(mod => mod.ProfileDialog),
-//   { ssr: false }
-// )
+const ProfileDialog = dynamic(
+  () => import('./ProfileDialog').then(mod => mod.ProfileDialog),
+  { ssr: false }
+)
 
 type IncomeProps = {
   income: Promise<IncomeType | null>
@@ -50,7 +50,7 @@ export const Income = ({ income, locale }: IncomeProps) => {
               {t('no_income')}
             </Text>
           ) : (
-            <div className="flex flex-col gap-2">
+            <div className="flex flex-col">
               <div className="flex items-center justify-between">
                 <Text className="font-semibold">{t('income.title_label')}</Text>
                 <Text>{incomeData.title}</Text>
@@ -76,7 +76,7 @@ export const Income = ({ income, locale }: IncomeProps) => {
                   <Text className="font-semibold">
                     {t('income.hours_per_day_label')}
                   </Text>
-                  <Text>{incomeData.hoursPerDay}</Text>
+                  <Text>{`${incomeData.hoursPerDay}h`}</Text>
                 </div>
               )}
               {!isContract && (
@@ -107,13 +107,15 @@ export const Income = ({ income, locale }: IncomeProps) => {
           )}
         </CardContent>
       </Card>
-      <ProfileDialog
-        open={open}
-        title={t('title')}
-        locale={locale}
-        income={incomeData}
-        onOpenChange={setOpen}
-      />
+      {open && (
+        <ProfileDialog
+          open={open}
+          title={t('title')}
+          locale={locale}
+          income={incomeData}
+          onOpenChange={setOpen}
+        />
+      )}
     </>
   )
 }

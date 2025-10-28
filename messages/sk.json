@@ -41,12 +41,12 @@
     "title": "Príjem",
     "income_title": "Názov",
     "income_type": "Typ",
-    "income_fixed_net": "Fixná mzda",
+    "income_fixed_net": "Čistá mzda",
     "income_hourly_rate": "Hodinová mzda",
-    "income_hours_per_day": "Počet hodín za deň",
-    "income_frequency": "Frekvencia",
+    "income_hours_per_day": "Odpracované hodiny za deň",
+    "income_frequency": "Frekvencia výplaty",
     "income_type_enum": {
-      "FULL_TIME": "Trvalý príjem",
+      "FULL_TIME": "Trvalý pracovný pomer",
       "CONTRACT": "Kontrakt",
       "FREELANCE": "Freelance",
       "ONE_OFF": "Jednorázový príjem"
@@ -56,7 +56,9 @@
       "WEEKLY": "Týždenne",
       "DAILY": "Denne",
       "YEARLY": "Ročne"
-    }
+    },
+    "success_message": "Príjem bol úspešne aktualizovaný.",
+    "error_message": "Príjem sa nepodarilo aktualizovať."
   },
   "button": {
     "save": "Uložiť",

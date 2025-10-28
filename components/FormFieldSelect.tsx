@@ -28,6 +28,7 @@ type FormFieldSelectProps<T extends FieldValues> = {
   type?: React.HTMLInputTypeAttribute
   isRequired?: boolean
   options: { value: string; label: string }[]
+  disabled?: boolean
 }
 
 export const FormFieldSelect = <T extends FieldValues>({
@@ -37,7 +38,8 @@ export const FormFieldSelect = <T extends FieldValues>({
   description,
   placeholder,
   isRequired = false,
-  options
+  options,
+  disabled = false
 }: FormFieldSelectProps<T>) => (
   <Controller
     control={control}
@@ -55,6 +57,7 @@ export const FormFieldSelect = <T extends FieldValues>({
           name={field.name}
           value={field.value}
           onValueChange={field.onChange}
+          disabled={disabled}
         >
           <SelectTrigger
             id={field.name}

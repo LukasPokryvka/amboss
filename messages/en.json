@@ -56,7 +56,9 @@
       "WEEKLY": "Weekly",
       "DAILY": "Daily",
       "YEARLY": "Yearly"
-    }
+    },
+    "success_message": "Income updated successfully.",
+    "error_message": "Income update failed."
   },
   "button": {
     "save": "Save",
