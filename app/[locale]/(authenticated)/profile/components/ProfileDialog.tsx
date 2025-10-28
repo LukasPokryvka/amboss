@@ -81,7 +81,7 @@ export const ProfileDialog = ({
     <ResponsiveModal open={open} handleOpenChange={onOpenChange} title={title}>
       <Form {...form}>
         <form
-          className="flex flex-col gap-4 p-4"
+          className="flex flex-col gap-4"
           onSubmit={form.handleSubmit(onSubmit)}
         >
           <FormFieldInput

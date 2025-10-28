@@ -1,5 +1,6 @@
 'use client'
 
+import { useTranslations } from 'next-intl'
 import type { ReactNode } from 'react'
 import { Button } from '@/components/ui/button'
 import {
@@ -36,6 +37,7 @@ export const ResponsiveModal = ({
   handleOpenChange
 }: DrawerDialogDemoProps) => {
   const isDesktop = useMediaQuery('(min-width: 768px)')
+  const t = useTranslations('button')
 
   if (isDesktop) {
     return (
@@ -63,7 +65,7 @@ export const ResponsiveModal = ({
         {children}
         <DrawerFooter className="pt-2 px-0">
           <DrawerClose asChild>
-            <Button variant="outline">Cancel</Button>
+            <Button variant="outline">{t('cancel')}</Button>
           </DrawerClose>
         </DrawerFooter>
       </DrawerContent>

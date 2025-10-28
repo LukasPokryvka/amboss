@@ -72,5 +72,15 @@
     "cancel": "Zrušiť",
     "delete": "Vymazať",
     "edit": "Upraviť"
+  },
+  "dashboard": {
+    "income_bubble": {
+      "title": "Očakávaný mesačný príjem",
+      "not_set_income": "Svoj mesačný príjem ste ešte nevyplnili.",
+      "not_set_income_link": "Profil si môžete nastaviť",
+      "not_set_income_link_text": "tu",
+      "calculated_income_description_1": "Táto hodnota je vypočítaná na základe pracovných dní v mesiaci, vašej hodinovej mzdy",
+      "calculated_income_description_2": "a odpracovaných hodín za deň"
+    }
   }
 }

@@ -72,5 +72,15 @@
     "cancel": "Cancel",
     "delete": "Delete",
     "edit": "Edit"
+  },
+  "dashboard": {
+    "income_bubble": {
+      "title": "Expected monthly income",
+      "not_set_income": "You haven't set your monthly income yet.",
+      "not_set_income_link": "You can setup your profile",
+      "not_set_income_link_text": "here",
+      "calculated_income_description_1": "This value calculation is based on working days of the month, your hourly rate",
+      "calculated_income_description_2": "and working hours per day"
+    }
   }
 }
