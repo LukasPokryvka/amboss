@@ -5,34 +5,12 @@ import { revalidatePath } from 'next/cache'
 import { redirect } from 'next/navigation'
 import prisma from '@/lib/prisma'
 import { ROUTES } from '@/lib/routes'
-import type { IncomeSchemaType } from '@/lib/schema/Income.schema'
+import type { BankAccountSchemaType } from '@/lib/schema/BankAccount.schema'
 import { tryCatch } from '@/lib/tryCatch'
 import type { MutationReturnType } from '@/types/return'
 
-export const getIncome = async () => {
-  const { userId } = await auth()
-
-  if (!userId) {
-    redirect(ROUTES.Landing())
-  }
-
-  const { error, data: income } = await tryCatch(
-    prisma.income.findFirst({
-      where: {
-        clerkId: userId
-      }
-    })
-  )
-
-  if (error) {
-    throw error
-  }
-
-  return income
-}
-
-export const upsertIncome = async (
-  incomeData: IncomeSchemaType & { incomeId?: number }
+export const upsertBankAccount = async (
+  bankAccountData: BankAccountSchemaType & { bankAccountId?: number }
 ): Promise<MutationReturnType> => {
   const { userId } = await auth()
 
@@ -40,12 +18,14 @@ export const upsertIncome = async (
     redirect(ROUTES.Landing())
   }
 
-  if (incomeData.incomeId) {
-    const { incomeId, ...data } = incomeData
+  console.log(JSON.stringify(bankAccountData, null, 2))
+
+  if (bankAccountData.bankAccountId) {
+    const { bankAccountId, ...data } = bankAccountData
 
     const { error } = await tryCatch(
-      prisma.income.update({
-        where: { id: incomeId },
+      prisma.bankAccount.update({
+        where: { id: bankAccountId },
         data
       })
     )
@@ -54,14 +34,21 @@ export const upsertIncome = async (
       return { success: false, error }
     }
 
-    revalidatePath(ROUTES.Profile())
+    revalidatePath(ROUTES.Banks())
 
     return { success: true, error: null }
   } else {
+    const { bankId, ...data } = bankAccountData
+
     const { error } = await tryCatch(
-      prisma.income.create({
+      prisma.bankAccount.create({
         data: {
-          ...incomeData,
+          ...data,
+          bank: {
+            connect: {
+              id: bankId
+            }
+          },
           user: {
             connect: {
               clerkId: userId
@@ -75,7 +62,7 @@ export const upsertIncome = async (
       return { success: false, error }
     }
 
-    revalidatePath(ROUTES.Profile())
+    revalidatePath(ROUTES.Banks())
 
     return { success: true, error: null }
   }

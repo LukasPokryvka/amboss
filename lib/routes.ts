@@ -4,5 +4,6 @@ export const ROUTES = {
 
   // PRIVATE
   Dashboard: () => '/dashboard',
-  Profile: () => '/profile'
+  Profile: () => '/profile',
+  Banks: () => '/banks'
 } as const

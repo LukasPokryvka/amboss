@@ -13,7 +13,8 @@
     },
     "menu": {
       "title": "Menu",
-      "dashboard": "Dashboard"
+      "dashboard": "Dashboard",
+      "banks": "Banks"
     }
   },
   "user_menu": {
@@ -81,6 +82,48 @@
       "not_set_income_link_text": "here",
       "calculated_income_description_1": "This value calculation is based on working days of the month, your hourly rate",
       "calculated_income_description_2": "and working hours per day"
+    }
+  },
+  "banks": {
+    "title": "Banks & Accounts",
+    "add_bank": "Add bank",
+    "header_title": "Total Portfolio Value",
+    "banks": "Banks",
+    "products": "Products",
+    "apy": "APY",
+    "dialog": {
+      "title": "Add Bank",
+      "name": "Bank Name",
+      "success_message": "Bank updated successfully.",
+      "error_message": "Bank update failed."
+    },
+    "bank_account": {
+      "bank_account_type": {
+        "CHECKING": "Checking",
+        "SAVINGS": "Savings",
+        "TERM_DEPOSIT": "Term Deposit",
+        "BOND": "Bond"
+      },
+      "no_accounts": "No accounts",
+      "create_account": "Create Account",
+      "matures_on": "Matures on",
+      "dialog": {
+        "title": "Add Account",
+        "name": "Account Name",
+        "type": "Account Type",
+        "currency": "Currency",
+        "balance": "Balance",
+        "interestRate": "Interest Rate",
+        "startDate": "Start Date",
+        "endDate": "End Date",
+        "success_message": "Account updated successfully.",
+        "error_message": "Account update failed."
+      }
+    }
+  },
+  "form": {
+    "calendar": {
+      "select_date": "Select date"
     }
   }
 }

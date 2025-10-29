@@ -14,7 +14,7 @@ import { ResponsiveModal } from '@/components/ReponsiveModal'
 import { Button } from '@/components/ui/button'
 import { Form } from '@/components/ui/form'
 import { IncomeFrequencyMap, IncomeTypeMap } from '@/lib/maps/IncomeMap'
-import { IncomeSchema, type IncomeSchemaType } from '@/lib/schema/IncomeSchema'
+import { IncomeSchema, type IncomeSchemaType } from '@/lib/schema/Income.schema'
 import type { Locale } from '@/types/common'
 
 type ProfileDialogProps = {

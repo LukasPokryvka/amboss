@@ -13,7 +13,8 @@
     },
     "menu": {
       "title": "Menu",
-      "dashboard": "Domov"
+      "dashboard": "Domov",
+      "banks": "Banky"
     }
   },
   "user_menu": {
@@ -81,6 +82,48 @@
       "not_set_income_link_text": "tu",
       "calculated_income_description_1": "Táto hodnota je vypočítaná na základe pracovných dní v mesiaci, vašej hodinovej mzdy",
       "calculated_income_description_2": "a odpracovaných hodín za deň"
+    }
+  },
+  "banks": {
+    "title": "Banky & Účty",
+    "add_bank": "Pridať banku",
+    "header_title": "Celková hodnota portfólia",
+    "banks": "Banky",
+    "products": "Produkty",
+    "apy": "p.a.",
+    "dialog": {
+      "title": "Pridať banku",
+      "name": "Názov banky",
+      "success_message": "Banka bola úspešne aktualizovaná.",
+      "error_message": "Aktualizácia banky sa nepodarila."
+    },
+    "bank_account": {
+      "bank_account_type": {
+        "CHECKING": "Bežný účet",
+        "SAVINGS": "Sporiaci účet",
+        "TERM_DEPOSIT": "Termínovaný vklad",
+        "BOND": "Dlhopis"
+      },
+      "no_accounts": "Žiadne účty",
+      "create_account": "Pridať účet",
+      "matures_on": "Splatnosť",
+      "dialog": {
+        "title": "Pridať účet",
+        "name": "Názov účtu",
+        "type": "Typ účtu",
+        "currency": "Mena",
+        "balance": "Zostatok",
+        "interestRate": "Úroková sadzba",
+        "startDate": "Dátum začiatku",
+        "endDate": "Dátum ukončenia",
+        "success_message": "Účet bol úspešne aktualizovaný.",
+        "error_message": "Účet sa nepodarilo aktualizovať."
+      }
+    }
+  },
+  "form": {
+    "calendar": {
+      "select_date": "Vybrať dátum"
     }
   }
 }

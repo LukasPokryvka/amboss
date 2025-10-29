@@ -1,6 +1,6 @@
 'use client'
 
-import { Home, Plus } from 'lucide-react'
+import { Home, Landmark, Plus } from 'lucide-react'
 import { useTranslations } from 'next-intl'
 import type { getTranslations } from 'next-intl/server'
 import type { ComponentProps } from 'react'
@@ -40,6 +40,11 @@ const createMenuData = (t: Awaited<ReturnType<typeof getTranslations>>) => ({
       title: t('menu.dashboard'),
       url: ROUTES.Dashboard(),
       icon: Home
+    },
+    {
+      title: t('menu.banks'),
+      url: ROUTES.Banks(),
+      icon: Landmark
     }
   ]
 })
