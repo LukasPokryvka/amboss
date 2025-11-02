@@ -85,12 +85,19 @@ export const BankAccountDialog = ({
       open={open}
       handleOpenChange={open => onOpenChange(open ? bankId : null)}
       title={title}
+      submitButton={
+        <Button
+          type="submit"
+          className="w-full mt-4"
+          disabled={isPending}
+          onClick={form.handleSubmit(onSubmit)}
+        >
+          {tButton('save')}
+        </Button>
+      }
     >
       <Form {...form}>
-        <form
-          className="flex flex-col gap-4"
-          onSubmit={form.handleSubmit(onSubmit)}
-        >
+        <form className="flex flex-col gap-4">
           <FormFieldInput
             control={form.control}
             name="name"
@@ -154,9 +161,6 @@ export const BankAccountDialog = ({
               />
             </>
           )}
-          <Button type="submit" className="w-full mt-4" disabled={isPending}>
-            {tButton('save')}
-          </Button>
         </form>
       </Form>
     </ResponsiveModal>
