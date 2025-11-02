@@ -72,7 +72,8 @@
     "save": "Uložiť",
     "cancel": "Zrušiť",
     "delete": "Vymazať",
-    "edit": "Upraviť"
+    "edit": "Upraviť",
+    "confirm": "Potvrdiť"
   },
   "dashboard": {
     "income_bubble": {
@@ -95,7 +96,11 @@
       "title": "Pridať banku",
       "name": "Názov banky",
       "success_message": "Banka bola úspešne aktualizovaná.",
-      "error_message": "Aktualizácia banky sa nepodarila."
+      "error_message": "Aktualizácia banky sa nepodarila.",
+      "delete_success_message": "Banka bola úspešne vymazaná.",
+      "delete_error_message": "Vymazanie banky sa nepodarilo.",
+      "delete_title": "Vymazať banku",
+      "delete_description": "Toto vymaže banku a všetky asociované účty."
     },
     "bank_account": {
       "bank_account_type": {

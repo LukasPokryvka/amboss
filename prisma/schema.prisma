@@ -79,6 +79,7 @@ model Bank {
   clerkId   String
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+  deletedAt DateTime?
 
   accounts BankAccount[]
   user     User          @relation(fields: [clerkId], references: [clerkId], onDelete: Cascade)
@@ -97,6 +98,7 @@ model BankAccount {
   endDate      DateTime?
   createdAt    DateTime        @default(now())
   updatedAt    DateTime        @updatedAt
+  deletedAt    DateTime?
 
   user             User          @relation(fields: [clerkId], references: [clerkId], onDelete: Cascade)
   bank             Bank          @relation(fields: [bankId], references: [id])
@@ -118,6 +120,7 @@ model Transaction {
   executedAt    DateTime        @default(now())
   description   String?
   createdAt     DateTime        @default(now())
+  deletedAt     DateTime?
 
   user            User         @relation(fields: [clerkId], references: [clerkId], onDelete: Cascade)
   fromBankAccount BankAccount? @relation("TxFromAccount", fields: [fromAccountId], references: [id], onDelete: SetNull)
@@ -136,6 +139,7 @@ model IncomeEvent {
   receivedAt  DateTime   @default(now())
   description String?
   createdAt   DateTime   @default(now())
+  deletedAt   DateTime?
 
   income      Income?      @relation(fields: [incomeId], references: [id], onDelete: SetNull)
   user        User         @relation(fields: [clerkId], references: [clerkId], onDelete: Cascade)

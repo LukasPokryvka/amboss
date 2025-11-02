@@ -72,7 +72,8 @@
     "save": "Save",
     "cancel": "Cancel",
     "delete": "Delete",
-    "edit": "Edit"
+    "edit": "Edit",
+    "confirm": "Confirm"
   },
   "dashboard": {
     "income_bubble": {
@@ -95,7 +96,11 @@
       "title": "Add Bank",
       "name": "Bank Name",
       "success_message": "Bank updated successfully.",
-      "error_message": "Bank update failed."
+      "error_message": "Bank update failed.",
+      "delete_success_message": "Bank deleted successfully.",
+      "delete_error_message": "Bank delete failed.",
+      "delete_title": "Delete Bank",
+      "delete_description": "This will delete the bank and all associated accounts."
     },
     "bank_account": {
       "bank_account_type": {

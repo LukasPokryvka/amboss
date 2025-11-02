@@ -7,6 +7,7 @@ import {
   Dialog,
   DialogContent,
   DialogDescription,
+  DialogFooter,
   DialogHeader,
   DialogTitle
 } from '@/components/ui/dialog'
@@ -52,6 +53,7 @@ export const ResponsiveModal = ({
             )}
           </DialogHeader>
           {children}
+          {submitButton && <DialogFooter>{submitButton}</DialogFooter>}
         </DialogContent>
       </Dialog>
     )

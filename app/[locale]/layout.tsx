@@ -7,6 +7,7 @@ import { enUS, skSK } from '@clerk/localizations'
 import { notFound } from 'next/navigation'
 import { hasLocale, NextIntlClientProvider } from 'next-intl'
 import { Suspense } from 'react'
+import { TailwindIndicator } from '@/components/TailwindIndicator'
 import { Toaster } from '@/components/ui/sonner'
 import { routing } from '@/i18n/routing'
 
@@ -57,6 +58,7 @@ const RootLayout = async ({
             >
               <NextIntlClientProvider>{children}</NextIntlClientProvider>
               <Toaster />
+              <TailwindIndicator />
             </ThemeProvider>
           </Suspense>
         </body>

@@ -18,8 +18,6 @@ export const upsertBankAccount = async (
     redirect(ROUTES.Landing())
   }
 
-  console.log(JSON.stringify(bankAccountData, null, 2))
-
   if (bankAccountData.bankAccountId) {
     const { bankAccountId, ...data } = bankAccountData
 
@@ -66,4 +64,31 @@ export const upsertBankAccount = async (
 
     return { success: true, error: null }
   }
+}
+
+export const deleteBankAccount = async (
+  bankAccountId: number
+): Promise<MutationReturnType> => {
+  const { userId } = await auth()
+
+  if (!userId) {
+    redirect(ROUTES.Landing())
+  }
+
+  const { error } = await tryCatch(
+    prisma.bankAccount.update({
+      where: { id: bankAccountId },
+      data: {
+        deletedAt: new Date()
+      }
+    })
+  )
+
+  if (error) {
+    return { success: false, error }
+  }
+
+  revalidatePath(ROUTES.Banks())
+
+  return { success: true, error: null }
 }
