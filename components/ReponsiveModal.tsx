@@ -26,6 +26,7 @@ type DrawerDialogDemoProps = {
   children: ReactNode
   title: string
   description?: string
+  submitButton?: ReactNode
   handleOpenChange: (open: boolean) => void
 }
 
@@ -34,6 +35,7 @@ export const ResponsiveModal = ({
   children,
   title,
   description,
+  submitButton,
   handleOpenChange
 }: DrawerDialogDemoProps) => {
   const isDesktop = useMediaQuery('(min-width: 768px)')
@@ -58,12 +60,13 @@ export const ResponsiveModal = ({
   return (
     <Drawer open={open} onOpenChange={handleOpenChange}>
       <DrawerContent className="px-4">
-        <DrawerHeader className="text-left">
+        <DrawerHeader className="text-left shrink-0">
           <DrawerTitle>{title}</DrawerTitle>
           {description && <DrawerDescription>{description}</DrawerDescription>}
         </DrawerHeader>
-        {children}
-        <DrawerFooter className="pt-2 px-0">
+        <div className="flex-1 overflow-y-auto">{children}</div>
+        <DrawerFooter className="pt-2 px-0 shrink-0">
+          {submitButton && submitButton}
           <DrawerClose asChild>
             <Button variant="outline">{t('cancel')}</Button>
           </DrawerClose>
