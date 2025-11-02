@@ -10,7 +10,7 @@ import { toast } from 'sonner'
 import { upsertIncome } from '@/app/actions/income.action'
 import { FormFieldInput } from '@/components/FormFieldInput'
 import { FormFieldSelect } from '@/components/FormFieldSelect'
-import { ResponsiveModal } from '@/components/ReponsiveModal'
+import { ResponsiveModal } from '@/components/ResponsiveModal'
 import { Button } from '@/components/ui/button'
 import { Form } from '@/components/ui/form'
 import { IncomeFrequencyMap, IncomeTypeMap } from '@/lib/maps/IncomeMap'
@@ -78,12 +78,23 @@ export const ProfileDialog = ({
   }
 
   return (
-    <ResponsiveModal open={open} handleOpenChange={onOpenChange} title={title}>
-      <Form {...form}>
-        <form
-          className="flex flex-col gap-4"
-          onSubmit={form.handleSubmit(onSubmit)}
+    <ResponsiveModal
+      open={open}
+      handleOpenChange={onOpenChange}
+      title={title}
+      submitButton={
+        <Button
+          type="submit"
+          className="w-full mt-4"
+          disabled={isPending}
+          onClick={form.handleSubmit(onSubmit)}
         >
+          {tButton('save')}
+        </Button>
+      }
+    >
+      <Form {...form}>
+        <form className="flex flex-col gap-4">
           <FormFieldInput
             control={form.control}
             name="title"
@@ -153,9 +164,6 @@ export const ProfileDialog = ({
               disabled={isPending}
             />
           )}
-          <Button type="submit" className="w-full mt-4" disabled={isPending}>
-            {tButton('save')}
-          </Button>
         </form>
       </Form>
     </ResponsiveModal>

@@ -14,6 +14,7 @@ import {
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
+import { Separator } from '@/components/ui/separator'
 import { Text } from '@/components/ui/text'
 import { formatCurrency, formatDate, formatPercentage } from '@/lib/formatters'
 import { BankAccountMap } from '@/lib/maps/BankAccountMap'
@@ -61,18 +62,22 @@ export const BanksAccordions = ({ banks }: BanksAccordionsProps) => {
               value={bank.id.toString()}
               className="bg-card border-none shadow-md rounded-xl p-4"
             >
-              <AccordionTrigger className="flex items-center p-0 cursor-pointer">
-                <div className="size-10 rounded-full bg-accent flex items-center justify-center">
+              <AccordionTrigger className="flex items-center p-0 cursor-pointer sm:flex-row flex-col gap-2">
+                <div className="size-10 rounded-full bg-accent flex items-center justify-center sm:block hidden">
                   <Building2 className="size-6" />
                 </div>
                 <div className="flex flex-col grow max-w-full">
-                  <Text variant="large" className="line-clamp-1 truncate">
+                  <Text
+                    variant="large"
+                    className="line-clamp-1 truncate text-center sm:text-left"
+                  >
                     {bank.name}
                   </Text>
-                  <Text variant="muted">
+                  <Text variant="muted" className="text-center sm:text-left">
                     {bank.accounts.length} {t('products')}
                   </Text>
                 </div>
+                <Separator className="sm:hidden block" />
                 <Text className="text-xl tracking-tight font-semibold">
                   {formatCurrency({ amount: bankTotalBalance })}
                 </Text>
@@ -91,18 +96,18 @@ export const BanksAccordions = ({ banks }: BanksAccordionsProps) => {
                     return (
                       <Card key={account.id} className="py-4">
                         <CardContent className="flex items-center gap-4">
-                          <div className="size-10 rounded-full bg-secondary flex items-center justify-center">
+                          <div className="size-10 rounded-full bg-secondary sm:flex items-center justify-center shrink-0 hidden">
                             <Wallet className="size-5" />
                           </div>
                           <div className="flex flex-col grow max-w-full">
-                            <div className="flex items-center gap-2">
+                            <div className="flex sm:items-center gap-2 sm:flex-row flex-col">
                               <Text>{account.name}</Text>
-                              <Badge variant="outline">
+                              <Badge variant="secondary">
                                 {BankAccountMap(locale)[account.type]}
                               </Badge>
                             </div>
                             {hasInterestRate && (
-                              <div className="flex items-center gap-2">
+                              <div className="flex sm:items-center gap-0 sm:flex-row flex-col sm:gap-2 mt-1 sm:mt-0">
                                 <Text className="text-green-700">
                                   {formatPercentage({
                                     percentage: account.interestRate

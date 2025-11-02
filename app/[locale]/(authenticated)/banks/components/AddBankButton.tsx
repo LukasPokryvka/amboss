@@ -23,7 +23,7 @@ export const AddBankButton = () => {
         }}
       >
         <PlusIcon className="size-4" />
-        {t('add_bank')}
+        <span className="hidden sm:block">{t('add_bank')}</span>
       </Button>
       {open && (
         <BankDialog
