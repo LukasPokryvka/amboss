@@ -1,5 +1,6 @@
 'use client'
 
+import { useUser } from '@clerk/nextjs'
 import type { Bank, BankAccount } from '@prisma/client'
 import {
   Building2,
@@ -10,7 +11,7 @@ import {
 } from 'lucide-react'
 import dynamic from 'next/dynamic'
 import { useLocale, useTranslations } from 'next-intl'
-import { use, useState } from 'react'
+import { use, useOptimistic, useState } from 'react'
 import { toast } from 'sonner'
 import { deleteBank } from '@/app/actions/bank.action'
 import {
@@ -53,11 +54,17 @@ type BanksAccordionsProps = {
   }>
 }
 
+type OptimisticAction =
+  | { type: 'create'; name: string }
+  | { type: 'update'; bankId: number; name: string }
+  | { type: 'delete'; bankId: number }
+
 export const BanksAccordions = ({ banks }: BanksAccordionsProps) => {
   const banksData = use(banks)
   const t = useTranslations('banks')
   const tButton = useTranslations('button')
   const locale = useLocale()
+  const { user } = useUser()
   const [bankState, setBankState] = useState<{
     bankId: number | null
     bankAccount: BankAccount | null
@@ -65,10 +72,62 @@ export const BanksAccordions = ({ banks }: BanksAccordionsProps) => {
   const [bankToEdit, setBankToEdit] = useState<Bank | null>(null)
   const [bankIdToDelete, setBankIdToDelete] = useState<number | null>(null)
 
+  const [optimisticBanks, addOptimisticBank] = useOptimistic(
+    banksData,
+    (state, action: OptimisticAction) => {
+      switch (action.type) {
+        case 'create': {
+          const newBank = {
+            id: Date.now(),
+            name: action.name,
+            accounts: [],
+            createdAt: new Date(),
+            updatedAt: new Date(),
+            clerkId: user?.id ?? crypto.randomUUID(),
+            deletedAt: null
+          }
+
+          return {
+            ...state,
+            banks: [...state.banks, newBank],
+            banksCount: state.banksCount + 1
+          }
+        }
+        case 'update': {
+          return {
+            ...state,
+            banks: state.banks.map(bank =>
+              bank.id === action.bankId ? { ...bank, name: action.name } : bank
+            )
+          }
+        }
+        case 'delete': {
+          const bankToDelete = state.banks.find(b => b.id === action.bankId)
+          const accountsLength = bankToDelete?.accounts.length ?? 0
+          const accountsSum =
+            bankToDelete?.accounts.reduce(
+              (acc, account) => acc + account.balance,
+              0
+            ) ?? 0
+
+          return {
+            ...state,
+            banks: state.banks.filter(bank => bank.id !== action.bankId),
+            banksCount: state.banksCount - 1,
+            accountsCount: state.accountsCount - accountsLength,
+            accountsSum: state.accountsSum - accountsSum
+          }
+        }
+        default:
+          return state
+      }
+    }
+  )
+
   return (
     <>
       <Accordion type="multiple" className="w-full gap-4 flex flex-col">
-        {banksData.banks.map(bank => {
+        {optimisticBanks.banks.map(bank => {
           const bankTotalBalance = bank.accounts.reduce(
             (acc, account) => acc + account.balance,
             0
@@ -207,6 +266,9 @@ export const BanksAccordions = ({ banks }: BanksAccordionsProps) => {
           title={t('dialog.title')}
           onOpenChange={() => setBankToEdit(null)}
           bank={bankToEdit}
+          onOptimisticUpdate={action => {
+            addOptimisticBank(action)
+          }}
         />
       )}
       {bankIdToDelete && (
@@ -219,6 +281,7 @@ export const BanksAccordions = ({ banks }: BanksAccordionsProps) => {
           handleOpenChange={() => setBankIdToDelete(null)}
           onCancel={() => setBankIdToDelete(null)}
           onConfirm={async () => {
+            addOptimisticBank({ type: 'delete', bankId: bankIdToDelete })
             const { success } = await deleteBank(bankIdToDelete)
             if (success) {
               toast.success(t('dialog.delete_success_message'))

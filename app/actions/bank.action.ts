@@ -93,11 +93,11 @@ export const upsertBank = async (
       })
     )
 
+    revalidatePath(ROUTES.Banks())
+
     if (error) {
       return { success: false, error }
     }
-
-    revalidatePath(ROUTES.Banks())
 
     return { success: true, error: null }
   } else {
@@ -114,11 +114,11 @@ export const upsertBank = async (
       })
     )
 
+    revalidatePath(ROUTES.Banks())
+
     if (error) {
       return { success: false, error }
     }
-
-    revalidatePath(ROUTES.Banks())
 
     return { success: true, error: null }
   }
@@ -148,11 +148,11 @@ export const deleteBank = async (
     ])
   )
 
+  revalidatePath(ROUTES.Banks())
+
   if (error) {
     return { success: false, error }
   }
-
-  revalidatePath(ROUTES.Banks())
 
   return { success: true, error: null }
 }

@@ -28,11 +28,11 @@ export const upsertBankAccount = async (
       })
     )
 
+    revalidatePath(ROUTES.Banks())
+
     if (error) {
       return { success: false, error }
     }
-
-    revalidatePath(ROUTES.Banks())
 
     return { success: true, error: null }
   } else {
@@ -56,11 +56,11 @@ export const upsertBankAccount = async (
       })
     )
 
+    revalidatePath(ROUTES.Banks())
+
     if (error) {
       return { success: false, error }
     }
-
-    revalidatePath(ROUTES.Banks())
 
     return { success: true, error: null }
   }
@@ -84,11 +84,11 @@ export const deleteBankAccount = async (
     })
   )
 
+  revalidatePath(ROUTES.Banks())
+
   if (error) {
     return { success: false, error }
   }
-
-  revalidatePath(ROUTES.Banks())
 
   return { success: true, error: null }
 }

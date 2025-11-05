@@ -50,11 +50,11 @@ export const upsertIncome = async (
       })
     )
 
+    revalidatePath(ROUTES.Profile())
+
     if (error) {
       return { success: false, error }
     }
-
-    revalidatePath(ROUTES.Profile())
 
     return { success: true, error: null }
   } else {
@@ -71,11 +71,11 @@ export const upsertIncome = async (
       })
     )
 
+    revalidatePath(ROUTES.Profile())
+
     if (error) {
       return { success: false, error }
     }
-
-    revalidatePath(ROUTES.Profile())
 
     return { success: true, error: null }
   }

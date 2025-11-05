@@ -18,13 +18,26 @@ type BankDialogProps = {
   title: string
   bank: Bank | null
   onOpenChange: (open: boolean) => void
+  onOptimisticUpdate?: (
+    action:
+      | {
+          type: 'update'
+          name: string
+          bankId: number
+        }
+      | {
+          type: 'create'
+          name: string
+        }
+  ) => void
 }
 
 export const BankDialog = ({
   open,
   title,
   bank,
-  onOpenChange
+  onOpenChange,
+  onOptimisticUpdate
 }: BankDialogProps) => {
   const t = useTranslations('banks.dialog')
   const tButton = useTranslations('button')
@@ -40,6 +53,21 @@ export const BankDialog = ({
 
   const onSubmit = (data: BankSchemaType) => {
     startTransition(async () => {
+      if (onOptimisticUpdate) {
+        if (bank) {
+          onOptimisticUpdate({
+            type: 'update',
+            name: data.name,
+            bankId: bank.id
+          })
+        } else {
+          onOptimisticUpdate({
+            type: 'create',
+            name: data.name
+          })
+        }
+      }
+
       const { success } = await upsertBank({
         ...data,
         bankId: bank?.id
