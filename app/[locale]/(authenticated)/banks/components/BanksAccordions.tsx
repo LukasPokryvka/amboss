@@ -14,6 +14,7 @@ import { useLocale, useTranslations } from 'next-intl'
 import { use, useOptimistic, useState } from 'react'
 import { toast } from 'sonner'
 import { deleteBank } from '@/app/actions/bank.action'
+import { deleteBankAccount } from '@/app/actions/bankAccount.action'
 import {
   Accordion,
   AccordionContent,
@@ -164,7 +165,10 @@ export const BanksAccordions = ({ banks }: BanksAccordionsProps) => {
                   <Button
                     variant="secondary"
                     onClick={() => {
-                      setBankState({ bankId: bank.id, bankAccount: null })
+                      setBankState({
+                        bankId: bank.id,
+                        bankAccount: null
+                      })
                     }}
                   >
                     <PlusIcon className="size-4" />
@@ -198,7 +202,7 @@ export const BanksAccordions = ({ banks }: BanksAccordionsProps) => {
                     return (
                       <Card
                         key={account.id}
-                        className="py-4"
+                        className="py-4 cursor-pointer hover:border  hover:border-primary transition-all duration-300"
                         onClick={() => {
                           setBankState({
                             bankId: bank.id,
@@ -256,8 +260,26 @@ export const BanksAccordions = ({ banks }: BanksAccordionsProps) => {
           open={Boolean(bankState.bankId)}
           title={t('bank_account.dialog.title')}
           bankId={bankState.bankId}
-          onOpenChange={() => setBankState({ bankId: null, bankAccount: null })}
+          onOpenChange={() =>
+            setBankState({
+              bankId: null,
+              bankAccount: null
+            })
+          }
           bankAccount={bankState.bankAccount}
+          onDelete={(() => {
+            if (bankState.bankAccount) {
+              const account = bankState.bankAccount
+              return async () => {
+                await deleteBankAccount(account.id)
+                setBankState({
+                  bankId: null,
+                  bankAccount: null
+                })
+              }
+            }
+            return undefined
+          })()}
         />
       )}
       {bankToEdit && (

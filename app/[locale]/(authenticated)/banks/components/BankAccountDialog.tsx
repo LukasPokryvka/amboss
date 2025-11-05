@@ -25,6 +25,7 @@ type BankAccountDialogProps = {
   bankAccount: BankAccount | null
   bankId: number
   onOpenChange: (bankId: number | null) => void
+  onDelete?: () => void
 }
 
 export const BankAccountDialog = ({
@@ -32,7 +33,8 @@ export const BankAccountDialog = ({
   title,
   bankAccount,
   bankId,
-  onOpenChange
+  onOpenChange,
+  onDelete
 }: BankAccountDialogProps) => {
   const t = useTranslations('banks.bank_account.dialog')
   const tButton = useTranslations('button')
@@ -94,6 +96,18 @@ export const BankAccountDialog = ({
         >
           {tButton('save')}
         </Button>
+      }
+      deleteButton={
+        onDelete && (
+          <Button
+            variant="destructive"
+            className="w-full"
+            disabled={isPending}
+            onClick={onDelete}
+          >
+            {tButton('delete')}
+          </Button>
+        )
       }
     >
       <Form {...form}>
