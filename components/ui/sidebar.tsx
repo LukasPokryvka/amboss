@@ -189,11 +189,7 @@ function Sidebar({
           className="bg-sidebar text-sidebar-foreground w-(--sidebar-width) p-0 [&>button]:hidden"
           style={
             {
-              '--sidebar-width': SIDEBAR_WIDTH_MOBILE,
-              top: 'calc(env(safe-area-inset-top, 0px) * -1)',
-              bottom: 'calc(env(safe-area-inset-bottom, 0px) * -1)',
-              height:
-                'calc(100vh + env(safe-area-inset-top, 0px) + env(safe-area-inset-bottom, 0px))'
+              '--sidebar-width': SIDEBAR_WIDTH_MOBILE
             } as React.CSSProperties
           }
           side={side}
